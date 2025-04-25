@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\ApplicationStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\ApplyController;
+use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
+use App\Models\ApplicationStatus;
 
 Route::get('/', function (){
     return view('home'); 
@@ -140,8 +143,11 @@ Route::get('/slider', function (){
     return view('slider'); 
 })->name('slider');
 Route::get('/navbar', function (){
-    return view('navbar'); 
+    return view('partial.navbar'); 
 })->name('navbar');
+Route::get('/footer', function (){
+    return view('partial.footer'); 
+})->name('footer');
 
 
 
@@ -152,3 +158,7 @@ Route::get('/navbar', function (){
 Route::post('/complain', [ComplainController::class, 'complainPost'])->name('complain.post');  
 Route::post('/apply', [ApplyController::class, 'applyPost'])->name('apply.post'); 
 Route::post('/complainAgainstPolice', [ComplainAgainstPoliceController::class, 'complainAgainstPolicePost'])->name('complainAgainstPolice.post');
+
+Route::post('/collaborate', [CollaborateController::class, 'store'])->name('collaborate.post');
+
+Route::post('/formm', [ApplicationStatusController::class, 'checkStatus'])->name('status.check');

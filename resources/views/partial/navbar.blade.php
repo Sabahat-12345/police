@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gilgit Baltistan Police</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Top Navbar Styles */
-        .navbar-custom {
+            /* Top Navbar Styles */
+            .navbar-custom {
             background-color: #3f2330;
             height: 80px;
             position: relative;
@@ -121,36 +112,13 @@
                 width: calc(100% - 2rem);
             }
         }
-        @media (max-width: 776px) and (min-width: 477px) {
-    .emergency-badge {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1050;
-        padding: 8px 16px;
-    }
-}
-
-@media (max-width: 476px) {
-    .emergency-badge {
-        position: static;
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    .logo-container {
-        margin-top: 60px; /* pushes logo down if needed */
-        text-align: center;
-    }
-}
 
 
     </style>
-</head>
-<body>
 
-    <!-- Top Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
+<section>
+     <!-- Top Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <div class="d-flex justify-content-between w-100 align-items-center">
                 <div class="logo-container">
@@ -237,9 +205,10 @@
             </div>
         </div>
     </nav>
+</section>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Custom JavaScript for hover functionality -->
     <script>
@@ -263,5 +232,3 @@
         window.addEventListener('resize', handleHover);
     </script>
 
-</body>
-</html>
