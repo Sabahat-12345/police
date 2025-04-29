@@ -6,11 +6,15 @@ use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
-use App\Models\ApplicationStatus;
+// use App\Models\ApplicationStatus;
 
 Route::get('/', function (){
     return view('home'); 
-})->name('home'); 
+})->name('home');
+
+Route::get('/dashboard', function (){
+    return view('admin.index'); 
+})->name('dashboard');
 
 Route::get('/apply', function (){
     return view('apply'); 
@@ -149,6 +153,10 @@ Route::get('/footer', function (){
     return view('partial.footer'); 
 })->name('footer');
 
+// Route::get('/admin', function (){
+//     return view('admin.index'); 
+// })->name('index');
+
 
 
 
@@ -162,3 +170,51 @@ Route::post('/complainAgainstPolice', [ComplainAgainstPoliceController::class, '
 Route::post('/collaborate', [CollaborateController::class, 'store'])->name('collaborate.post');
 
 Route::post('/formm', [ApplicationStatusController::class, 'checkStatus'])->name('status.check');
+
+
+
+// Admin
+Route::get('/buttons', function (){
+    return view('admin.buttons'); 
+})->name('buttons');
+
+Route::get('/cards', function (){
+    return view('admin.cards'); 
+})->name('cards');
+
+Route::get('/utilities-color', function (){
+    return view('admin.utilities-color'); 
+})->name('utilities-color');
+
+Route::get('/utilities-border', function (){
+    return view('admin.utilities-border'); 
+})->name('utilities-border');
+
+Route::get('/utilities-animation', function (){
+    return view('admin.utilities-animation'); 
+})->name('utilities-animation');
+
+Route::get('/utilities-other', function (){
+    return view('admin.utilities-other'); 
+})->name('utilities-other');
+Route::get('/login', function (){
+    return view('admin.login'); 
+})->name('login');
+Route::get('/register', function (){
+    return view('admin.register'); 
+})->name('register');
+Route::get('/forgot-password', function (){
+    return view('admin.forgot-password'); 
+})->name('forgot-password');
+Route::get('/404', function (){
+    return view('admin.404'); 
+})->name('404');
+Route::get('/blank', function (){
+    return view('admin.blank'); 
+})->name('blank');
+Route::get('/charts', function (){
+    return view('admin.charts'); 
+})->name('charts');
+Route::get('/tables', function (){
+    return view('admin.tables'); 
+})->name('tables');
