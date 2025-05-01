@@ -12,9 +12,7 @@ Route::get('/', function (){
     return view('home'); 
 })->name('home');
 
-Route::get('/dashboard', function (){
-    return view('admin.index'); 
-})->name('dashboard');
+
 
 Route::get('/apply', function (){
     return view('apply'); 
@@ -174,6 +172,9 @@ Route::post('/formm', [ApplicationStatusController::class, 'checkStatus'])->name
 
 
 // Admin
+Route::get('/dashboard', function (){
+    return view('admin.index'); 
+})->name('dashboard');
 Route::get('/buttons', function (){
     return view('admin.buttons'); 
 })->name('buttons');
@@ -218,3 +219,12 @@ Route::get('/charts', function (){
 Route::get('/tables', function (){
     return view('admin.tables'); 
 })->name('tables');
+Route::get('/admin gallery', function (){
+    return view('admin.gallery'); 
+})->name('gallery');
+Route::get('/admin slider', function (){
+    return view('admin.slider'); 
+})->name('slider');
+Route::get('/admin apply form', function (){
+    return view('admin.apply'); 
+})->name('apply');
