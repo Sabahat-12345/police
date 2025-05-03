@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> </title>
+    <title>@yield('title')</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -82,13 +82,13 @@
     
 
 @include('admin.partial.footer')
+      <!-- Core plugin JavaScript-->
+      <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
       <!-- Bootstrap core JavaScript-->
       <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
       <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  
-      <!-- Core plugin JavaScript-->
-      <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+  @stack('scripts')
   
       <!-- Custom scripts for all pages-->
       <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>

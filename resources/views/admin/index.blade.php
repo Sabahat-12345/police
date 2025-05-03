@@ -1,4 +1,5 @@
 @extends('admin.include.app')
+@section('title', 'Police Admin Dashboard')
 @section('content')
 
                     <!-- Begin Page Content -->
