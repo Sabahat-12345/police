@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Admin Dashboard - Slider Management</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    
+Admin Dashboard - Slider Management
+    @extends('admin.include.app')
+    @section('title', 'Admin Dashboard - Slider Management')
+    @section('content')
     <style>
         .slider-item {
             border: 1px solid #e3e6f0;
@@ -51,458 +34,90 @@
             border-left: 4px solid #4e73df;
         }
     </style>
-</head>
+     <!-- Begin Page Content -->
+     <div class="container-fluid">
 
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar - Same as before -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-         <!-- Sidebar - Brand -->
-         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">Admin Dashboard </div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="{{route('dashboard')}}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Slider Management</h1>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addSliderModal">
+                <i class="fas fa-plus"></i> Add New Slide
+            </button>
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-       <!-- Media Management Dropdown -->
-<li class="nav-item">
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMedia"
-    aria-expanded="true" aria-controls="collapseMedia">
-    <i class="fas fa-fw fa-images"></i>
-    <span>Media</span>
-</a>
-<div id="collapseMedia" class="collapse" aria-labelledby="headingMedia" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Media Components:</h6>
-        <a class="collapse-item" href="{{route('gallery')}}">Gallery</a>
-        <a class="collapse-item" href="{{route('slider')}}">Slider</a>
-    </div>
-</div>
-</li>
-
-      
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Addons
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{route('login')}}">Login</a>
-                    <a class="collapse-item" href="{{route('register')}}">Register</a>
-                    <a class="collapse-item" href="{{route('forgot-password')}}">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="{{route('404')}}">404 Page</a>
-                    <a class="collapse-item" href="{{route('blank')}}">Blank Page</a>
+        <!-- Slider Items -->
+        <div class="row" id="sliderItemsContainer">
+            <!-- Sample Slide 1 -->
+            <div class="col-md-6 col-lg-4 slider-item slider-active">
+                <div class="slider-header d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="m-0 font-weight-bold text-primary">Slide #1</h5>
+                    <div class="form-check">
+                        <input class="form-check-input slide-status" type="checkbox" checked id="slide1-status">
+                        <label class="form-check-label" for="slide1-status">
+                            Active
+                        </label>
+                    </div>
                 </div>
-            </div>
-        </li>
-
-      
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTables" 
-               aria-expanded="true" aria-controls="collapseTables">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span>
-            </a>
-            <div id="collapseTables" class="collapse" aria-labelledby="headingTables" 
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Data Tables:</h6>
-                    <a class="collapse-item" href="#apply">Apply</a>
-                    <a class="collapse-item" href="#complain">Complain</a>
-                    <a class="collapse-item" href="#complain-against-police">Complain Against Police</a>
-                    <a class="collapse-item" href="#application-status">Application Status</a>
-                    <a class="collapse-item" href="#collaborate">Collaborate</a>
+                <img src="https://via.placeholder.com/800x400?text=Slide+1" class="slider-preview w-100">
+                <div class="slider-content mb-2">
+                    <p class="m-0"><strong>Title:</strong> Welcome to Our Website</p>
+                    <p class="m-0"><strong>Subtitle:</strong> Discover amazing features</p>
+                    <p class="m-0"><strong>Button Text:</strong> Learn More</p>
+                    <p class="m-0"><strong>Button Link:</strong> #features</p>
                 </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar - Same as before -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-               
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('admin/img/undraw_profile_1.svg')}}"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('admin/img/undraw_profile_2.svg')}}"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{asset('admin/img/undraw_profile_3.svg')}}"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('admin/img/undraw_profile.svg')}}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-                </nav>
-
-                
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Slider Management</h1>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addSliderModal">
-                            <i class="fas fa-plus"></i> Add New Slide
+                <div class="slider-controls">
+                    <div class="slider-order">
+                        <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
+                        <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-info edit-slide" data-slideid="1">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-danger delete-slide" data-slideid="1">
+                            <i class="fas fa-trash"></i> Delete
                         </button>
                     </div>
-
-                    <!-- Slider Items -->
-                    <div class="row" id="sliderItemsContainer">
-                        <!-- Sample Slide 1 -->
-                        <div class="col-md-6 col-lg-4 slider-item slider-active">
-                            <div class="slider-header d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="m-0 font-weight-bold text-primary">Slide #1</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input slide-status" type="checkbox" checked id="slide1-status">
-                                    <label class="form-check-label" for="slide1-status">
-                                        Active
-                                    </label>
-                                </div>
-                            </div>
-                            <img src="https://via.placeholder.com/800x400?text=Slide+1" class="slider-preview w-100">
-                            <div class="slider-content mb-2">
-                                <p class="m-0"><strong>Title:</strong> Welcome to Our Website</p>
-                                <p class="m-0"><strong>Subtitle:</strong> Discover amazing features</p>
-                                <p class="m-0"><strong>Button Text:</strong> Learn More</p>
-                                <p class="m-0"><strong>Button Link:</strong> #features</p>
-                            </div>
-                            <div class="slider-controls">
-                                <div class="slider-order">
-                                    <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
-                                    <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
-                                </div>
-                                <div>
-                                    <button class="btn btn-sm btn-info edit-slide" data-slideid="1">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <button class="btn btn-sm btn-danger delete-slide" data-slideid="1">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sample Slide 2 -->
-                        <div class="col-md-6 col-lg-4 slider-item">
-                            <div class="slider-header d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="m-0 font-weight-bold text-primary">Slide #2</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input slide-status" type="checkbox" id="slide2-status">
-                                    <label class="form-check-label" for="slide2-status">
-                                        Active
-                                    </label>
-                                </div>
-                            </div>
-                            <img src="https://via.placeholder.com/800x400?text=Slide+2" class="slider-preview w-100">
-                            <div class="slider-content mb-2">
-                                <p class="m-0"><strong>Title:</strong> Premium Services</p>
-                                <p class="m-0"><strong>Subtitle:</strong> Quality you can trust</p>
-                                <p class="m-0"><strong>Button Text:</strong> Our Services</p>
-                                <p class="m-0"><strong>Button Link:</strong> #services</p>
-                            </div>
-                            <div class="slider-controls">
-                                <div class="slider-order">
-                                    <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
-                                    <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
-                                </div>
-                                <div>
-                                    <button class="btn btn-sm btn-info edit-slide" data-slideid="2">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <button class="btn btn-sm btn-danger delete-slide" data-slideid="2">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer - Same as before -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2025</span>
+            <!-- Sample Slide 2 -->
+            <div class="col-md-6 col-lg-4 slider-item">
+                <div class="slider-header d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="m-0 font-weight-bold text-primary">Slide #2</h5>
+                    <div class="form-check">
+                        <input class="form-check-input slide-status" type="checkbox" id="slide2-status">
+                        <label class="form-check-label" for="slide2-status">
+                            Active
+                        </label>
                     </div>
                 </div>
-            </footer>
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                <img src="https://via.placeholder.com/800x400?text=Slide+2" class="slider-preview w-100">
+                <div class="slider-content mb-2">
+                    <p class="m-0"><strong>Title:</strong> Premium Services</p>
+                    <p class="m-0"><strong>Subtitle:</strong> Quality you can trust</p>
+                    <p class="m-0"><strong>Button Text:</strong> Our Services</p>
+                    <p class="m-0"><strong>Button Link:</strong> #services</p>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{route('login')}}">Logout</a>
+                <div class="slider-controls">
+                    <div class="slider-order">
+                        <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
+                        <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-info edit-slide" data-slideid="2">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-danger delete-slide" data-slideid="2">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-
-
+    <!-- /.container-fluid -->
 
     <!-- Add Slider Modal -->
     <div class="modal fade" id="addSliderModal" tabindex="-1" role="dialog" aria-labelledby="addSliderModalLabel" aria-hidden="true">
@@ -642,180 +257,180 @@
         </div>
     </div>
 
-    <!-- Your existing modals (logout modal) -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <!-- Your existing logout modal code -->
-    </div>
+    @endsection
+@push('scripts')
+     
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
-
-    <script>
-        $(document).ready(function() {
-            // Handle edit slide button click
-            $(document).on('click', '.edit-slide', function() {
-                var slideId = $(this).data('slideid');
-                var slideItem = $(this).closest('.slider-item');
-                
-                // Get current slide data
-                var title = slideItem.find('.slider-content p:nth-child(1)').text().replace('Title: ', '');
-                var subtitle = slideItem.find('.slider-content p:nth-child(2)').text().replace('Subtitle: ', '');
-                var buttonText = slideItem.find('.slider-content p:nth-child(3)').text().replace('Button Text: ', '');
-                var buttonLink = slideItem.find('.slider-content p:nth-child(4)').text().replace('Button Link: ', '');
-                var isActive = slideItem.find('.slide-status').is(':checked');
-                var imageSrc = slideItem.find('img').attr('src');
-                
-                // Populate edit form
-                $('#editSlideId').val(slideId);
-                $('#editSlideTitle').val(title);
-                $('#editSlideSubtitle').val(subtitle);
-                $('#editSlideButtonText').val(buttonText);
-                $('#editSlideButtonLink').val(buttonLink);
-                $('#editSlideActive').prop('checked', isActive);
-                
-                // Show current image preview
-                $('#currentImagePreview').html('<img src="' + imageSrc + '" class="img-thumbnail" style="max-height: 150px;">');
-                
-                $('#editSliderModal').modal('show');
-            });
+<script>
+    $(document).ready(function() {
+        // Handle edit slide button click
+        $(document).on('click', '.edit-slide', function() {
+            var slideId = $(this).data('slideid');
+            var slideItem = $(this).closest('.slider-item');
             
-            // Handle delete slide button click
-            $(document).on('click', '.delete-slide', function() {
-                var slideId = $(this).data('slideid');
-                $('#slideIdToDelete').val(slideId);
-                $('#deleteSlideModal').modal('show');
-            });
+            // Get current slide data
+            var title = slideItem.find('.slider-content p:nth-child(1)').text().replace('Title: ', '');
+            var subtitle = slideItem.find('.slider-content p:nth-child(2)').text().replace('Subtitle: ', '');
+            var buttonText = slideItem.find('.slider-content p:nth-child(3)').text().replace('Button Text: ', '');
+            var buttonLink = slideItem.find('.slider-content p:nth-child(4)').text().replace('Button Link: ', '');
+            var isActive = slideItem.find('.slide-status').is(':checked');
+            var imageSrc = slideItem.find('img').attr('src');
             
-            // Handle slide status change
-            $(document).on('change', '.slide-status', function() {
-                var slideItem = $(this).closest('.slider-item');
-                if ($(this).is(':checked')) {
-                    slideItem.addClass('slider-active');
-                } else {
-                    slideItem.removeClass('slider-active');
-                }
-            });
+            // Populate edit form
+            $('#editSlideId').val(slideId);
+            $('#editSlideTitle').val(title);
+            $('#editSlideSubtitle').val(subtitle);
+            $('#editSlideButtonText').val(buttonText);
+            $('#editSlideButtonLink').val(buttonLink);
+            $('#editSlideActive').prop('checked', isActive);
             
-            // Handle order buttons
-            $(document).on('click', '.order-btn', function() {
-                var direction = $(this).data('direction');
-                var slideItem = $(this).closest('.slider-item');
-                
-                if (direction === 'up') {
-                    slideItem.insertBefore(slideItem.prev());
-                } else {
-                    slideItem.insertAfter(slideItem.next());
-                }
-                
-                // Update slide numbers
-                $('.slider-item').each(function(index) {
-                    $(this).find('h5').text('Slide #' + (index + 1));
-                });
-            });
+            // Show current image preview
+            $('#currentImagePreview').html('<img src="' + imageSrc + '" class="img-thumbnail" style="max-height: 150px;">');
             
-            // Save new slide
-            $('#saveNewSlide').click(function() {
-                // In a real application, you would upload the image and save data to database here
-                // For demo, we'll just add a new slide to the page
-                
-                var title = $('#slideTitle').val();
-                var subtitle = $('#slideSubtitle').val();
-                var buttonText = $('#slideButtonText').val();
-                var buttonLink = $('#slideButtonLink').val();
-                var isActive = $('#slideActive').is(':checked');
-                var newId = Date.now(); // Generate unique ID
-                
-                var newSlideHtml = `
-                    <div class="col-md-6 col-lg-4 slider-item ${isActive ? 'slider-active' : ''}">
-                        <div class="slider-header d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="m-0 font-weight-bold text-primary">Slide #${$('.slider-item').length + 1}</h5>
-                            <div class="form-check">
-                                <input class="form-check-input slide-status" type="checkbox" ${isActive ? 'checked' : ''} id="slide${newId}-status">
-                                <label class="form-check-label" for="slide${newId}-status">
-                                    Active
-                                </label>
-                            </div>
-                        </div>
-                        <img src="https://via.placeholder.com/800x400?text=New+Slide" class="slider-preview w-100">
-                        <div class="slider-content mb-2">
-                            <p class="m-0"><strong>Title:</strong> ${title}</p>
-                            <p class="m-0"><strong>Subtitle:</strong> ${subtitle}</p>
-                            <p class="m-0"><strong>Button Text:</strong> ${buttonText}</p>
-                            <p class="m-0"><strong>Button Link:</strong> ${buttonLink}</p>
-                        </div>
-                        <div class="slider-controls">
-                            <div class="slider-order">
-                                <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
-                                <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
-                            </div>
-                            <div>
-                                <button class="btn btn-sm btn-info edit-slide" data-slideid="${newId}">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                                <button class="btn btn-sm btn-danger delete-slide" data-slideid="${newId}">
-                                    <i class="fas fa-trash"></i> Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                $('#sliderItemsContainer').append(newSlideHtml);
-                $('#addSliderModal').modal('hide');
-                $('#addSliderForm')[0].reset();
-            });
+            $('#editSliderModal').modal('show');
+        });
+        
+        // Handle delete slide button click
+        $(document).on('click', '.delete-slide', function() {
+            var slideId = $(this).data('slideid');
+            $('#slideIdToDelete').val(slideId);
+            $('#deleteSlideModal').modal('show');
+        });
+        
+        // Handle slide status change
+        $(document).on('change', '.slide-status', function() {
+            var slideItem = $(this).closest('.slider-item');
+            if ($(this).is(':checked')) {
+                slideItem.addClass('slider-active');
+            } else {
+                slideItem.removeClass('slider-active');
+            }
+        });
+        
+        // Handle order buttons
+        $(document).on('click', '.order-btn', function() {
+            var direction = $(this).data('direction');
+            var slideItem = $(this).closest('.slider-item');
             
-            // Save slide changes
-            $('#saveSlideChanges').click(function() {
-                var slideId = $('#editSlideId').val();
-                var slideItem = $(`.slider-item .edit-slide[data-slideid="${slideId}"]`).closest('.slider-item');
-                
-                // Update slide data
-                var newTitle = $('#editSlideTitle').val();
-                var newSubtitle = $('#editSlideSubtitle').val();
-                var newButtonText = $('#editSlideButtonText').val();
-                var newButtonLink = $('#editSlideButtonLink').val();
-                var isActive = $('#editSlideActive').is(':checked');
-                
-                slideItem.find('.slider-content p:nth-child(1)').html('<strong>Title:</strong> ' + newTitle);
-                slideItem.find('.slider-content p:nth-child(2)').html('<strong>Subtitle:</strong> ' + newSubtitle);
-                slideItem.find('.slider-content p:nth-child(3)').html('<strong>Button Text:</strong> ' + newButtonText);
-                slideItem.find('.slider-content p:nth-child(4)').html('<strong>Button Link:</strong> ' + newButtonLink);
-                
-                // Update status
-                slideItem.find('.slide-status').prop('checked', isActive);
-                if (isActive) {
-                    slideItem.addClass('slider-active');
-                } else {
-                    slideItem.removeClass('slider-active');
-                }
-                
-                // In a real app, you would update the image here if changed
-                
-                $('#editSliderModal').modal('hide');
-            });
+            if (direction === 'up') {
+                slideItem.insertBefore(slideItem.prev());
+            } else {
+                slideItem.insertAfter(slideItem.next());
+            }
             
-            // Confirm slide delete
-            $('#confirmSlideDelete').click(function() {
-                var slideId = $('#slideIdToDelete').val();
-                $(`.slider-item .delete-slide[data-slideid="${slideId}"]`).closest('.slider-item').remove();
-                
-                // Re-number remaining slides
-                $('.slider-item').each(function(index) {
-                    $(this).find('h5').text('Slide #' + (index + 1));
-                });
-                
-                $('#deleteSlideModal').modal('hide');
+            // Update slide numbers
+            $('.slider-item').each(function(index) {
+                $(this).find('h5').text('Slide #' + (index + 1));
             });
         });
-    </script>
+        
+        // Save new slide
+        $('#saveNewSlide').click(function() {
+            // In a real application, you would upload the image and save data to database here
+            // For demo, we'll just add a new slide to the page
+            
+            var title = $('#slideTitle').val();
+            var subtitle = $('#slideSubtitle').val();
+            var buttonText = $('#slideButtonText').val();
+            var buttonLink = $('#slideButtonLink').val();
+            var isActive = $('#slideActive').is(':checked');
+            var newId = Date.now(); // Generate unique ID
+            
+            var newSlideHtml = `
+                <div class="col-md-6 col-lg-4 slider-item ${isActive ? 'slider-active' : ''}">
+                    <div class="slider-header d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="m-0 font-weight-bold text-primary">Slide #${$('.slider-item').length + 1}</h5>
+                        <div class="form-check">
+                            <input class="form-check-input slide-status" type="checkbox" ${isActive ? 'checked' : ''} id="slide${newId}-status">
+                            <label class="form-check-label" for="slide${newId}-status">
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                    <img src="https://via.placeholder.com/800x400?text=New+Slide" class="slider-preview w-100">
+                    <div class="slider-content mb-2">
+                        <p class="m-0"><strong>Title:</strong> ${title}</p>
+                        <p class="m-0"><strong>Subtitle:</strong> ${subtitle}</p>
+                        <p class="m-0"><strong>Button Text:</strong> ${buttonText}</p>
+                        <p class="m-0"><strong>Button Link:</strong> ${buttonLink}</p>
+                    </div>
+                    <div class="slider-controls">
+                        <div class="slider-order">
+                            <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
+                            <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-info edit-slide" data-slideid="${newId}">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-sm btn-danger delete-slide" data-slideid="${newId}">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            $('#sliderItemsContainer').append(newSlideHtml);
+            $('#addSliderModal').modal('hide');
+            $('#addSliderForm')[0].reset();
+        });
+        
+        // Save slide changes
+        $('#saveSlideChanges').click(function() {
+            var slideId = $('#editSlideId').val();
+            var slideItem = $(`.slider-item .edit-slide[data-slideid="${slideId}"]`).closest('.slider-item');
+            
+            // Update slide data
+            var newTitle = $('#editSlideTitle').val();
+            var newSubtitle = $('#editSlideSubtitle').val();
+            var newButtonText = $('#editSlideButtonText').val();
+            var newButtonLink = $('#editSlideButtonLink').val();
+            var isActive = $('#editSlideActive').is(':checked');
+            
+            slideItem.find('.slider-content p:nth-child(1)').html('<strong>Title:</strong> ' + newTitle);
+            slideItem.find('.slider-content p:nth-child(2)').html('<strong>Subtitle:</strong> ' + newSubtitle);
+            slideItem.find('.slider-content p:nth-child(3)').html('<strong>Button Text:</strong> ' + newButtonText);
+            slideItem.find('.slider-content p:nth-child(4)').html('<strong>Button Link:</strong> ' + newButtonLink);
+            
+            // Update status
+            slideItem.find('.slide-status').prop('checked', isActive);
+            if (isActive) {
+                slideItem.addClass('slider-active');
+            } else {
+                slideItem.removeClass('slider-active');
+            }
+            
+            // In a real app, you would update the image here if changed
+            
+            $('#editSliderModal').modal('hide');
+        });
+        
+        // Confirm slide delete
+        $('#confirmSlideDelete').click(function() {
+            var slideId = $('#slideIdToDelete').val();
+            $(`.slider-item .delete-slide[data-slideid="${slideId}"]`).closest('.slider-item').remove();
+            
+            // Re-number remaining slides
+            $('.slider-item').each(function(index) {
+                $(this).find('h5').text('Slide #' + (index + 1));
+            });
+            
+            $('#deleteSlideModal').modal('hide');
+        });
+    });
+</script>
+       @endpush
+               
 
-</body>
-</html>
+                
+               
+
+
+ 
+
+
+    
+
+   
+
