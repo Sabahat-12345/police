@@ -1,4 +1,4 @@
-Admin Dashboard - Slider Management
+
     @extends('admin.include.app')
     @section('title', 'Admin Dashboard - Slider Management')
     @section('content')
@@ -45,9 +45,11 @@ Admin Dashboard - Slider Management
             </button>
         </div>
 
+      
+
         <!-- Slider Items -->
         <div class="row" id="sliderItemsContainer">
-            <!-- Sample Slide 1 -->
+            @foreach ($sliders as $slider)
             <div class="col-md-6 col-lg-4 slider-item slider-active">
                 <div class="slider-header d-flex justify-content-between align-items-center mb-2">
                     <h5 class="m-0 font-weight-bold text-primary">Slide #1</h5>
@@ -58,12 +60,12 @@ Admin Dashboard - Slider Management
                         </label>
                     </div>
                 </div>
-                <img src="https://via.placeholder.com/800x400?text=Slide+1" class="slider-preview w-100">
+                <img src="{{ asset('admin/images/sliders/' . $slider->image) }}" class="slider-preview w-100">
                 <div class="slider-content mb-2">
-                    <p class="m-0"><strong>Title:</strong> Welcome to Our Website</p>
+                    {{-- <p class="m-0"><strong>Title:</strong> Welcome to Our Website</p>
                     <p class="m-0"><strong>Subtitle:</strong> Discover amazing features</p>
                     <p class="m-0"><strong>Button Text:</strong> Learn More</p>
-                    <p class="m-0"><strong>Button Link:</strong> #features</p>
+                    <p class="m-0"><strong>Button Link:</strong> #features</p> --}}
                 </div>
                 <div class="slider-controls">
                     <div class="slider-order">
@@ -80,44 +82,15 @@ Admin Dashboard - Slider Management
                     </div>
                 </div>
             </div>
+                    @endforeach
+           
 
-            <!-- Sample Slide 2 -->
-            <div class="col-md-6 col-lg-4 slider-item">
-                <div class="slider-header d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="m-0 font-weight-bold text-primary">Slide #2</h5>
-                    <div class="form-check">
-                        <input class="form-check-input slide-status" type="checkbox" id="slide2-status">
-                        <label class="form-check-label" for="slide2-status">
-                            Active
-                        </label>
-                    </div>
-                </div>
-                <img src="https://via.placeholder.com/800x400?text=Slide+2" class="slider-preview w-100">
-                <div class="slider-content mb-2">
-                    <p class="m-0"><strong>Title:</strong> Premium Services</p>
-                    <p class="m-0"><strong>Subtitle:</strong> Quality you can trust</p>
-                    <p class="m-0"><strong>Button Text:</strong> Our Services</p>
-                    <p class="m-0"><strong>Button Link:</strong> #services</p>
-                </div>
-                <div class="slider-controls">
-                    <div class="slider-order">
-                        <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
-                        <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
-                    </div>
-                    <div>
-                        <button class="btn btn-sm btn-info edit-slide" data-slideid="2">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-sm btn-danger delete-slide" data-slideid="2">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </div>
-                </div>
-            </div>
+         
         </div>
 
     </div>
     <!-- /.container-fluid -->
+
 
     <!-- Add Slider Modal -->
     <div class="modal fade" id="addSliderModal" tabindex="-1" role="dialog" aria-labelledby="addSliderModalLabel" aria-hidden="true">
@@ -187,50 +160,53 @@ Admin Dashboard - Slider Management
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="editSliderForm">
+                    <form id="editSliderForm" enctype="multipart/form-data" method="POST" action="{{ route('admin.slider.add-image') }}">
+                        @csrf
                         <input type="hidden" id="editSlideId">
                         <div class="form-group">
                             <label for="editSlideImage">Slide Image</label>
-                            <input type="file" class="form-control-file" id="editSlideImage">
+                            <input type="file" class="form-control-file" id="editSlideImage" name="image" accept="image/*">
                             <small class="form-text text-muted">Leave empty to keep current image</small>
                             <div class="mt-2" id="currentImagePreview"></div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="editSlideTitle">Title</label>
                             <input type="text" class="form-control" id="editSlideTitle">
                         </div>
                         <div class="form-group">
                             <label for="editSlideSubtitle">Subtitle</label>
                             <input type="text" class="form-control" id="editSlideSubtitle">
-                        </div>
-                        <div class="row">
+                        </div> --}}
+                        {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="editSlideButtonText">Button Text</label>
                                     <input type="text" class="form-control" id="editSlideButtonText">
                                 </div>
-                            </div>
-                            <div class="col-md-6">
+                            </div> --}}
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="editSlideButtonLink">Button Link</label>
                                     <input type="text" class="form-control" id="editSlideButtonLink">
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div> --}}
+                        {{-- <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="editSlideActive">
                                 <label class="form-check-label" for="editSlideActive">
                                     Active Slide
                                 </label>
-                            </div>
-                        </div>
-                    </form>
+                            </div> --}}
+                        {{-- </div> --}}
+
+                  
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" id="saveSlideChanges">Save Changes</button>
+                    <button type="submit" class="btn btn-primary" id="saveSlideChanges">Add Slider Image</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>

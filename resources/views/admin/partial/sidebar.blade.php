@@ -39,7 +39,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Media Components:</h6>
                 <a class="collapse-item" href="{{ route('gallery') }}">Gallery</a>
-                <a class="collapse-item" href="{{ route('slider') }}">Slider</a>
+                <a class="collapse-item" href="{{ route('admin.slider') }}">Slider</a>
             </div>
         </div>
     </li>

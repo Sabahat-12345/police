@@ -6,6 +6,9 @@ use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
+use App\Http\Controllers\SliderController;
+use App\Models\admin\Slider;
+
 // use App\Models\ApplicationStatus;
 
 Route::get('/', function (){
@@ -151,9 +154,6 @@ Route::get('/footer', function (){
     return view('partial.footer'); 
 })->name('footer');
 
-// Route::get('/admin', function (){
-//     return view('admin.index'); 
-// })->name('index');
 
 
 
@@ -219,12 +219,18 @@ Route::get('/charts', function (){
 Route::get('/tables', function (){
     return view('admin.tables'); 
 })->name('tables');
-Route::get('/admin gallery', function (){
+Route::get('/admin-gallery', function (){
     return view('admin.gallery'); 
 })->name('gallery');
-Route::get('/admin slider', function (){
-    return view('admin.slider'); 
-})->name('slider');
+
 Route::get('/admin apply form', function (){
     return view('admin.apply'); 
 })->name('apply');
+
+
+Route::prefix('/admin')->controller(SliderController::class)->group(function () {
+    Route::get('/slider', 'index')->name('admin.slider');
+    Route::post('/slider/add-image', 'addImage')->name('admin.slider.add-image');
+  
+});
+
