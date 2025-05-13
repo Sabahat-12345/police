@@ -6,8 +6,9 @@ use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
-use App\Http\Controllers\SliderController;
+use App\Http\Controllers\AdminSliderController;
 use App\Models\admin\Slider;
+use GuzzleHttp\Middleware;
 
 // use App\Models\ApplicationStatus;
 
@@ -228,9 +229,12 @@ Route::get('/admin apply form', function (){
 })->name('apply');
 
 
-Route::prefix('/admin')->controller(SliderController::class)->group(function () {
+Route::prefix('/admin')->controller(AdminSliderController::class)->group(function () {
     Route::get('/slider', 'index')->name('admin.slider');
-    Route::post('/slider/add-image', 'addImage')->name('admin.slider.add-image');
-  
+    Route::post('/slider/add-image', 'imageUpload')->name('juu');
+  Route::post('/slider/delete/{id}','delete' )->name('admin.slider.delete');
+
 });
+
+
 
