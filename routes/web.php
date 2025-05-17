@@ -7,15 +7,16 @@ use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
 use App\Http\Controllers\AdminSliderController;
+use App\Http\Controllers\HomeController;
 use App\Models\admin\Slider;
 use GuzzleHttp\Middleware;
 
 // use App\Models\ApplicationStatus;
 
-Route::get('/', function (){
-    return view('home'); 
-})->name('home');
 
+
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/apply', function (){
@@ -163,6 +164,9 @@ Route::get('/footer', function (){
 
 //form post methods
 Route::post('/complain', [ComplainController::class, 'complainPost'])->name('complain.post');  
+
+
+
 Route::post('/apply', [ApplyController::class, 'applyPost'])->name('apply.post'); 
 Route::post('/complainAgainstPolice', [ComplainAgainstPoliceController::class, 'complainAgainstPolicePost'])->name('complainAgainstPolice.post');
 

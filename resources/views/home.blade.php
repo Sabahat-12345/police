@@ -337,19 +337,17 @@
       <button type="button" data-bs-target="#autoSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   
-  <!-- Slides -->
+ 
+    @foreach ( $sliders as $index => $slider)
+    
+     <!-- Slides -->
   <div class="carousel-inner">
       <div class="carousel-item active">
-          <img src="{{ asset('assets/slider1.jpg') }}" class="d-block w-100 img-fluid" alt="Slide 1">
-      </div>
-      <div class="carousel-item">
-          <img src="{{ asset('assets/slider2.png') }}" class="d-block w-100 img-fluid" alt="Slide 2">
-      </div>
-      <div class="carousel-item">
-          <img src="{{ asset('assets/slider3.jpg') }}" class="d-block w-100 img-fluid" alt="Slide 3">
+          <img src="{{ asset('admin/images/sliders/'. $slider->image) }}" class="d-block w-100 img-fluid" alt="Slide 1">
       </div>
   </div>
-</div>
+      
+    @endforeach
 
     <!-- services -->
     <!-- Main Menu -->

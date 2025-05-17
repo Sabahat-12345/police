@@ -10,8 +10,8 @@ class AdminSliderController extends Controller
 {
  function index()
  {
-        $sliders = null;
-        //  Slider::all()_>WhereamiCommand(status == act->sortByDesc('created_at').ge;
+        // $sliders = null;
+        $sliders= Slider::all();
         // return $sliders;
 
         return view('admin.slider', compact('sliders'));
@@ -58,6 +58,7 @@ public function delete($id)
 
 
 }
+
   
   
 
