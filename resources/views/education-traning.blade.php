@@ -48,25 +48,7 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="50">
-                Police Training Academy
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
 
     <!-- Hero Section -->
     <header class="hero-section text-center">
@@ -218,31 +200,6 @@
 </section>
     </main>
 
-    <footer id="Contact" class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>training@gbpolice.gov.pk<br>05811-44500</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Download Brochure</a></li>
-                        <li><a href="#" class="text-white">Apply Online</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <p class="text-center mt-4 mb-0">&copy; 2023 GB Police Training Academy</p>
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
