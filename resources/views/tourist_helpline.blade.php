@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tourist Assistance - GB Police Helpline</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Tourist Assistance - GB Police Helpline'])
+@section('main')
+ <style>
         .tourism-theme {
             background-color: #2A5C40;
             color: white;
@@ -19,20 +13,7 @@
             margin-bottom: 1rem;
         }
     </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="tourism-theme py-3">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <img src="{{asset('assets/police.png')}}" alt="Tourism GB Logo" style="height: 50px;" class="me-3">
-                <div>
-                    <h1 class="h4 mb-0">Gilgit Baltistan Tourism Support</h1>
-                    <p class="mb-0">24/7 Visitor Assistance Services</p>
-                </div>
-            </div>
-        </div>
-    </header>
+
 
     <main class="container my-5">
         <h1 class="text-center mb-4" role="heading" aria-level="1">Tourist Helpline</h1>
@@ -134,14 +115,6 @@
         </section>
     </main>
 
-    <footer class="tourism-theme py-4 mt-5">
-        <div class="container text-center small">
-            <p class="mb-1">Gilgit Baltistan Tourism & Police Department</p>
-            <p class="mb-0">24/7 Helpline: 05811930044 | Email: touristhelp@gbpolice.gov.pk</p>
-            <p class="mt-2 mb-0">Operational in English, Urdu, and Local Languages</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+   
+@endsection
+   

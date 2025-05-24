@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inspector General of Police - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Inspector General of Police - Gilgit Baltistan Police'])
+@section('main')
+     <style>
         :root {
             --gb-blue: #0047AB;
             --gb-dark: #232b3f;
@@ -45,28 +39,8 @@
             background: #f8f9fa;
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--gb-dark);">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="40">
-                GB Police Leadership
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#message">Message</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+      
+<section>
     <!-- Hero Section -->
     <header class="igp-hero text-center">
         <div class="container">
@@ -203,16 +177,10 @@
         </section>
     </main>
 
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2023 Gilgit Baltistan Police. All rights reserved</p>
-            <p class="mb-0">Follow us: 
-                <a href="#" class="text-white"><i class="bi bi-twitter mx-2"></i></a>
-                <a href="#" class="text-white"><i class="bi bi-facebook mx-2"></i></a>
-            </p>
-        </div>
-    </footer>
+    
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
+   
+
+ 

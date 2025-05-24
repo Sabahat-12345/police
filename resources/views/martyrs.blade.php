@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Martyrs - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Martyrs - Gilgit Baltistan Police'])
+@section('main')
+     <style>
         :root {
             --gb-blue: #0047AB;
             --gb-dark: #232b3f;
@@ -57,28 +51,9 @@
             border-radius: 15px;
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--gb-dark);">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="50">
-                Martyrs Memorial
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#wall">Memorial Wall</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#Timeline">Timeline</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#honors">Honors</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+     
 
+<section>
     <!-- Hero Section -->
     <header class="hero-section text-center">
         <div class="container">
@@ -379,28 +354,7 @@
     </div>
 </div>
 
-<footer class="bg-dark text-white py-4">
-    <div class="container text-center">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <h5>Contact Families</h5>
-                <p>martyr.family@gbpolice.gov.pk</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Donate</h5>
-                <a href="#" class="text-white">Support Martyrs' Families</a>
-            </div>
-            <div class="col-md-4">
-                <h5>Follow</h5>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <p class="mt-4 mb-0">&copy; 2023 Gilgit Baltistan Police Martyrs Memorial</p>
-    </div>
-</footer>
+
 
 </div>
 
@@ -693,7 +647,7 @@
         </div>
     </div>
 </div>
-        
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+      </section>  
+  
+@endsection
+  

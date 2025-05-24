@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missing Persons Reporting - GB Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+@extends('layouts.app',['title' => 'Missing Persons Reporting - GB Police'])
+@section('main')
     <style>
         .missing-theme {
             background-color: #FF6B35;
@@ -28,21 +22,8 @@
             background: #004E89;
         }
     </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="missing-theme py-3">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <img src="{{asset('assets/police.png')}}" alt="Missing Persons Logo" style="height: 50px;" class="me-3">
-                <div>
-                    <h1 class="h4 mb-0">GB Missing Persons Unit</h1>
-                    <p class="mb-0">24/7 Emergency Reporting System</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
+ 
+<section>
     <main class="container my-5">
         <h1 class="text-center mb-4" role="heading" aria-level="1">Missing Persons Report</h1>
         
@@ -174,30 +155,6 @@
         </section> -->
     </main>
 
-    <footer class="missing-theme py-4 mt-5">
-        <div class="container text-center small">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h4 class="h6">Emergency Contacts</h4>
-                    <p class="mb-0">Helpline: 1138</p>
-                    <p class="mb-0">SMS Alert: 1139</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4 class="h6">Quick Links</h4>
-                    <p class="mb-0">National Database</p>
-                    <p class="mb-0">Forensic Services</p>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="h6">Follow Updates</h4>
-                    <p class="mb-0">Social Media Alerts</p>
-                    <p class="mb-0">Email Notifications</p>
-                </div>
-            </div>
-            <hr class="my-3">
-            <p class="mb-0">© 2023 GB Missing Persons Unit. All reports treated with urgency.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+   </section>
+@endsection
+    

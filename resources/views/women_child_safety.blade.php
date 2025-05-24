@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women & Child Protection - GB Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Women & Child Protection - GB Police'])
+@section('main')
+ <style>
         .safety-theme {
             background-color: #4B0082;
             color: white;
@@ -27,20 +21,7 @@
             100% { transform: scale(0.95); }
         }
     </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="safety-theme py-3">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <img src="{{asset('assets/police.png')}}" alt="Safety Shield Logo" style="height: 50px;" class="me-3">
-                <div>
-                    <h1 class="h4 mb-0">GB Women & Child Protection</h1>
-                    <p class="mb-0">Your Safety is Our Priority</p>
-                </div>
-            </div>
-        </div>
-    </header>
+
 
     <main class="container my-5">
         <h1 class="text-center mb-4" role="heading" aria-level="1">Women & Child Safety Initiative</h1>
@@ -185,30 +166,7 @@
         </section>
     </main>
 
-    <footer class="safety-theme py-4 mt-5">
-        <div class="container text-center small">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h4 class="h6">Emergency</h4>
-                    <p class="mb-0">Women: 1091</p>
-                    <p class="mb-0">Child: 1121</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4 class="h6">Prevention</h4>
-                    <p class="mb-0">Awareness Programs</p>
-                    <p class="mb-0">Self-Defense Training</p>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="h6">Support</h4>
-                    <p class="mb-0">Counseling Services</p>
-                    <p class="mb-0">Legal Assistance</p>
-                </div>
-            </div>
-            <hr class="my-3">
-            <p class="mb-0">© 2023 GB Protection Initiative. All reports confidential.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+   
+ 
+@endsection
+   

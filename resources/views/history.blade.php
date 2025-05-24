@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>History - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+@extends('layouts.app',['title' => 'History - Gilgit Baltistan Police'])
+@section('main')
     <style>
         :root {
             --gb-blue: #0047AB;
@@ -78,27 +72,8 @@
             transform: scale(1.03);
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--gb-dark);">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="40">
-                GB Police History
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#timeline">Timeline</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#values">Values</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    
+   <section>
 
     <!-- Hero Header -->
     <header class="hero-header text-center">
@@ -196,32 +171,8 @@
         </section>
     </main>
 
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>Archives</h5>
-                    <p class="mb-0"><a href="#" class="text-white">Historical Documents</a></p>
-                    <p><a href="#" class="text-white">Past Leadership</a></p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Contact</h5>
-                    <p class="mb-0">history@gbpolice.gov.pk</p>
-                    <p>05811-HISTORY (4478)</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow</h5>
-                    <div class="d-flex justify-content-center gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0">&copy; 2023 Gilgit Baltistan Police - All rights reserved</p>
-        </div>
-    </footer>
+ </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
+    
+

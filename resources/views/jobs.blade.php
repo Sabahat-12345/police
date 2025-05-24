@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Job Opportunities - Gilgit Baltistan Police</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+@extends('layouts.app',['title' => 'Job Opportunities - Gilgit Baltistan Police'])
+@section('main')
     <style>
         body {
             background-color: #f8f9fa;
@@ -30,25 +22,8 @@
             background-color: #bb2d3b;
         }
     </style>
-</head>
-<body>
 
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #232b3f;">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Gilgit Baltistan Police</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link active" href="{{route('job')}}">Jobs</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<section>
 <!-- Job Listings -->
 <div class="container mt-4">
     <h2 class="text-center mb-4">Current Job Openings</h2>
@@ -81,9 +56,8 @@
     </div>
 
 </div>
+</section>
 
-<!-- Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@endsection
+    
 
-</body>
-</html>

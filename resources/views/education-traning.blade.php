@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Education & Training - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+@extends('layouts.app',['title' => 'Education & Training - Gilgit Baltistan Police'])
+@section('main')
     <style>
-        :root {
-            --gb-blue: #0047AB;
-            --gb-dark: #232b3f;
-            --gb-red: #dc3545;
-        }
+   
 
         .hero-section {
             background: linear-gradient(rgba(35, 43, 63, 0.9), rgba(35, 43, 63, 0.9)),
@@ -41,15 +31,9 @@
             color: white;
         }
 
-        .navbar {
-            background-color: var(--gb-dark);
-            border-bottom: 3px solid var(--gb-blue);
-        }
     </style>
-</head>
-<body>
-
-
+    
+<section>
     <!-- Hero Section -->
     <header class="hero-section text-center">
         <div class="container">
@@ -199,8 +183,10 @@
     </div>
 </section>
     </main>
+</section>
 
+  
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
+    
+

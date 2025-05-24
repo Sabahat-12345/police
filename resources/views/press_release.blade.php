@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Press Release - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Press Release - Gilgit Baltistan Police'])
+@section('main')
+ <style>
         :root {
             --gb-blue: #0047AB;
             --gb-dark: #232b3f;
             --gb-light: #f8f9fa;
         }
         
-        body {
-            background-color: var(--gb-light);
-        }
+      
         
-        .navbar {
-            background-color: var(--gb-blue);
-            border-bottom: 3px solid #ffd700;
-        }
+     
         
         .press-release-card {
             background: white;
@@ -66,28 +55,8 @@
             color: white;
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="50" class="d-inline-block align-text-top me-2">
-                Gilgit Baltistan Police
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#press Releases"><i class="bi bi-newspaper"></i> Press Releases</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="{{route('helpline')}}"><i class="bi bi-envelope"></i> Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    
+<section>
     <main class="container my-5">
         <h1 class="text-center mb-5 display-4 fw-bold text-dark">Official Press Releases</h1>
         
@@ -156,33 +125,10 @@
             </div>
         </article>
     </main>
+</section>
 
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h5>Contact Information</h5>
-                    <p class="mb-0">24/7 Helpline: 05811-4357</p>
-                    <p>Email: media.gbpolice.gov.pk</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h5>Follow Us</h5>
-                    <div class="d-flex justify-content-center gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <p class="mb-1"><a href="#" class="text-white">Archives</a></p>
-                    <p class="mb-1"><a href="#" class="text-white">FAQ</a></p>
-                </div>
-            </div>
-            <p class="mt-3 mb-0">© 2025 Gilgit Baltistan Police. All rights reserved.</p>
-        </div>
-    </footer>
+ 
+@endsection
+   
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+ 

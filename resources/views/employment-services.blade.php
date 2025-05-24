@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Employment Services - Gilgit Baltistan Police</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+@extends('layouts.app',['title' => 'Employment Services - Gilgit Baltistan Police'])
+@section('main')
+    
     <style>
         .service-section {
             padding: 4rem 0;
@@ -43,42 +36,11 @@
             border-left: 4px solid #dc3545;
             margin-top: 1.5rem;
         }
-        .logo-img {
-            max-width: 180px;
-            height: auto;
-        }
-        .navbar-custom {
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            padding: 8px 0;
-            position: relative;
-            padding-left: 25px;
-        }
-        li:before {
-            content: "•";
-            color: #dc3545;
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
+      
+       
+       
     </style>
-</head>
-<body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-custom py-3">
-    <div class="container">
-        <a class="navbar-brand" href="{{route('home')}}">
-            <img src="{{asset('assets/police.png')}}" alt="Gilgit Baltistan Police Logo" class="logo-img img-fluid">
-        </a>
-    </div>
-</nav>
 
 <!-- Employment Services Section -->
 <section class="service-section">
@@ -119,8 +81,6 @@
     </div>
 </section>
 
-<!-- Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
+@endsection
+   

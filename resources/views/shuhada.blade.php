@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GB Police Shuhada</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .shuhada-header {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('gb-background.jpg');
-            background-size: cover;
-            padding: 100px 0;
-            color: white;
-        }
+@extends('layouts.app',['title' => 'GB Police Shuhada'])
+@section('main')
+     <style>
+      
         .martyr-card {
             transition: transform 0.3s;
             border: 1px solid #ddd;
@@ -25,16 +15,8 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
     </style>
-</head>
-<body>
-
-<div class="shuhada-header text-center">
-    <div class="container">
-        <h1 class="display-4">Gilgit-Baltistan Police Shuhada</h1>
-        <p class="lead">Honoring Our Brave Martyrs</p>
-    </div>
-</div>
-
+    
+<section>
 <div class="container py-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <!-- Original 3 Martyrs -->
@@ -100,7 +82,7 @@
         </div>
     </div>
 </div>
+</section>
+@endsection
+   
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tender Details - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+@extends('layouts.app',['title' => 'Tender Details - Gilgit Baltistan Police'])
+@section('main')
+  <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -33,8 +28,6 @@
             background-color: #4f5d73;
         }
     </style>
-</head>
-<body>
 
 <!-- Tender Details Section -->
 <div class="container tender-details-section">
@@ -49,5 +42,6 @@
     <button class="btn-back" onclick="window.history.back();">Back to Tenders</button>
 </div>
 
-</body>
-</html>
+
+@endsection
+  

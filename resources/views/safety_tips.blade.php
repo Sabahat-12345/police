@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Safety Guidelines - GB Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Public Safety Guidelines - GB Police'])
+@section('main')
+     <style>
         .safety-theme {
             background-color: #C8102E;
             color: white;
@@ -19,21 +13,8 @@
             margin-right: 1rem;
         }
     </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="safety-theme py-3">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <img src="{{asset('assets/police.png')}}" alt="GB Safety Logo" style="height: 50px;" class="me-3">
-                <div>
-                    <h1 class="h4 mb-0">Gilgit Baltistan Public Safety</h1>
-                    <p class="mb-0">Your Security is Our Priority</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    
+<section>
     <main class="container my-5">
         <h1 class="text-center mb-4" role="heading" aria-level="1">Safety Guidelines</h1>
         
@@ -157,14 +138,6 @@
         </section>
     </main>
 
-    <footer class="safety-theme py-4 mt-5">
-        <div class="container text-center small">
-            <p class="mb-1">Gilgit Baltistan Police Department - Public Safety Division</p>
-            <p class="mb-0">24/7 Helpline: 05811930033 | Email: safety@gbpolice.gov.pk</p>
-            <p class="mt-2 mb-0">Follow us on social media for safety updates</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+ </section>
+@endsection
+   

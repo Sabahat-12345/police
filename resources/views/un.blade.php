@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Officer Profile - Mr. Afzal Mehmood Butt</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+@extends('layouts.app',['title' => 'Officer Profile - Mr. Afzal Mehmood Butt'])
+@section('main')
+ <style>
         .profile-section {
             background-color: #f8f9fa;
             padding: 3rem 0;
@@ -55,8 +49,6 @@
             color: white;
         }
     </style>
-</head>
-<body>
 
 <section class="profile-section">
     <div class="container">
@@ -152,6 +144,6 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+@endsection
+   

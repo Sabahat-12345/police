@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Public Safety - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Public Safety - Gilgit Baltistan Police'])
+@section('main')
+      <style>
         :root {
             --gb-blue: #0047AB;
             --gb-dark: #232b3f;
@@ -41,33 +35,10 @@
             background-color: #ffe6e6;
         }
 
-        .navbar {
-            background-color: var(--gb-dark);
-            border-bottom: 3px solid var(--gb-blue);
-        }
+     
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="50">
-                Public Safety Division
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#initiatives">Initiatives</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#emergency">Emergency</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+ 
+<section>
     <!-- Hero Section -->
     <header class="hero-section text-center">
         <div class="container">
@@ -176,34 +147,9 @@
 </section>
     </main>
 
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <h5>Contact Safety Division</h5>
-                    <p>safety@gbpolice.gov.pk<br>05811-44000 (24/7)</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Crime Prevention Tips</a></li>
-                        <li><a href="#" class="text-white">Safety Certification</a></li>
-                        <li><a href="#" class="text-white">Volunteer Programs</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Updates</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <p class="text-center mt-4 mb-0">&copy; 2023 GB Police Public Safety Division</p>
-        </div>
-    </footer>
+  
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+ </section>
+@endsection
+  
+ 

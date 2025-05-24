@@ -8,6 +8,7 @@ use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TouristRegistrationController;
 use App\Models\admin\Slider;
 use GuzzleHttp\Middleware;
 
@@ -43,9 +44,9 @@ Route::get('/missing', function (){
     return view('missing_report'); 
 })->name('missing');
 
-Route::get('/gallery', function (){
+Route::get('/fronted-gallery', function (){
     return view('gallery'); 
-})->name('gallery');
+})->name('fronted-gallery');
 
 Route::get('/education', function (){
     return view('education-traning'); 
@@ -155,6 +156,10 @@ Route::get('/navbar', function (){
 Route::get('/footer', function (){
     return view('partial.footer'); 
 })->name('footer');
+Route::get('/igp', function (){
+    return view('igp'); 
+})->name('igp');
+
 
 
 
@@ -173,6 +178,7 @@ Route::post('/complainAgainstPolice', [ComplainAgainstPoliceController::class, '
 Route::post('/collaborate', [CollaborateController::class, 'store'])->name('collaborate.post');
 
 Route::post('/formm', [ApplicationStatusController::class, 'checkStatus'])->name('status.check');
+Route::post('/tourist-safety', [TouristRegistrationController::class, 'register'])->name('tourist.register');
 
 
 
@@ -230,7 +236,7 @@ Route::get('/admin-gallery', function (){
 
 Route::get('/admin apply form', function (){
     return view('admin.apply'); 
-})->name('apply');
+})->name('admin-apply');
 
 
 Route::prefix('/admin')->controller(AdminSliderController::class)->group(function () {

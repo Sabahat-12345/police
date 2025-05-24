@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>National Security Division - GB Special Branch</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'National Security Division - GB Special Branch'])
+@section('main')
+   <style>
         .security-theme {
             background-color: #0A2342;
             color: white;
@@ -23,21 +17,7 @@
             background: rgba(76, 175, 80, 0.1);
         }
     </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="security-theme py-3">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <img src="{{asset('assets/police.png')}}" alt="Security Shield Logo" style="height: 50px;" class="me-3">
-                <div>
-                    <h1 class="h4 mb-0">GB Special Security Branch</h1>
-                    <p class="mb-0">National Security & Intelligence Division</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    <section>
     <main class="container my-5">
         <h1 class="text-center mb-4" role="heading" aria-level="1">National Security Operations</h1>
         
@@ -153,31 +133,11 @@
             </div>
         </section>
     </main>
+</section>
 
-    <footer class="security-theme py-4 mt-5">
-        <div class="container text-center small">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <h4 class="h6">Security Partners</h4>
-                    <p class="mb-0">National Intelligence</p>
-                    <p class="mb-0">Border Forces</p>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4 class="h6">Confidentiality</h4>
-                    <p class="mb-0">Classified Handling</p>
-                    <p class="mb-0">Source Protection</p>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="h6">Verification</h4>
-                    <p class="mb-0">Secure Channels Only</p>
-                    <p class="mb-0">ID Authentication</p>
-                </div>
-            </div>
-            <hr class="my-3">
-            <p class="mb-0">© 2023 GB Special Branch. All rights reserved under Official Secrets Act.</p>
-        </div>
-    </footer>
+@endsection
+ 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+
+  

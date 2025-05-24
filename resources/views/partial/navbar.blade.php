@@ -1,33 +1,25 @@
 
     <style>
-            /* Top Navbar Styles */
-            .navbar-custom {
-            background-color: #3f2330;
-            height: 80px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Top Navbar Styling */
+        .navbar-custom {
+            background-color: #1e4d2b;
+            padding: 15px 0;
+            height: 100px;
+            width: 100vw;
             position: relative;
+            z-index: 1;
             overflow: visible;
             border: none !important;
-        }
-
-        .emergency-badge {
-            font-size: 1.1rem;
-            padding: 8px 20px;
-            white-space: nowrap;
-            color: white;
-        }
-
-        .red-square {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #dc3545;
-            color: white !important;
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            margin-left: 8px;
-            font-weight: bold;
-            font-size: 1.2rem;
         }
 
         .logo-container {
@@ -39,7 +31,8 @@
         }
 
         .logo-img {
-            height: 100px;
+            height: 110px;
+            width: auto;
             transition: transform 0.3s;
         }
 
@@ -47,78 +40,139 @@
             transform: scale(1.05);
         }
 
-        /* Bottom Navbar Styles */
-        .bottom-navbar {
-            background-color: #F5F5DC;
+        .emergency-badge {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
         }
 
-        .bottom-navbar .nav-link {
-            color: #000 !important;
-            padding: 0.5rem 1rem;
+        .red-square {
+            background-color: #dc3545;
+            color: white;
+            padding: 3px 8px;
+            margin-left: 6px;
+            border-radius: 3px;
+            font-size: 14px;
         }
 
-        .bottom-navbar .dropdown-menu {
-            background-color: #4f5d73;
+        /* Main Navigation */
+        .main-navbar {
+            background-color: transparent;
+            padding: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-navbar .navbar-nav {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-navbar .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            padding: 15px 25px !important;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .main-navbar .nav-link:hover {
+            color: #00a152 !important;
+            background-color: transparent !important;
+        }
+
+        .main-navbar .dropdown-toggle::after {
+            margin-left: 8px;
+        }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            background-color: white;
             border: none;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            margin-top: 0;
+            transition: all 0.3s ease;
         }
 
-        .bottom-navbar .dropdown-item {
-            color: white !important;
-        }
-
-        .bottom-navbar .dropdown-item:hover {
-            background-color: #232b3f;
-        }
-
-        /* Hover Effects for Desktop */
+        /* Ensure dropdown is hidden by default on desktop for hover effect */
         @media (min-width: 992px) {
-            .bottom-navbar .nav-item:hover .nav-link {
-                background-color: #232b3f;
-                color: white !important;
+            .dropdown-menu {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                display: block; /* Keep display block for hover effect */
             }
 
-            .bottom-navbar .nav-item.dropdown:hover .dropdown-menu {
-                display: block;
-                margin-top: 0;
+            .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
             }
+        }
 
-            .bottom-navbar .navbar-nav {
-                width: 100%;
-                justify-content: center;
-            }
+        .dropdown-item {
+            color: black !important;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: #00a152 !important;
+            background-color: transparent !important;
         }
 
         /* Mobile Styles */
         @media (max-width: 991.98px) {
+            .main-navbar .nav-link {
+                padding: 12px 15px !important;
+                font-size: 16px;
+            }
+
             .logo-container {
                 left: 50%;
                 transform: translateX(-50%) translateY(-50%);
             }
 
-            .navbar-toggler {
-                border-color: rgba(0,0,0,0.1);
+            .logo-img {
+                height: 80px;
             }
 
-            .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            .emergency-badge {
+                font-size: 14px;
+                padding: 6px 10px;
             }
 
-            .bottom-navbar .navbar-nav {
+            .red-square {
+                font-size: 12px;
+                padding: 2px 6px;
+            }
+
+            .navbar-custom {
+                height: 80px;
                 padding: 10px 0;
             }
 
-            .bottom-navbar .dropdown-menu {
-                margin-left: 1rem;
-                width: calc(100% - 2rem);
+            /* Ensure dropdown menus are hidden by default on mobile */
+            .dropdown-menu {
+                display: none; /* Bootstrap default for click-based toggle */
+            }
+
+            .dropdown.show .dropdown-menu {
+                display: block; /* Show when toggled on mobile */
             }
         }
-
-
     </style>
 
-<section>
-     <!-- Top Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-custom">
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <div class="d-flex justify-content-between w-100 align-items-center">
                 <div class="logo-container">
@@ -136,34 +190,35 @@
         </div>
     </nav>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bottom-navbar">
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg main-navbar">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav w-100 justify-content-between">
+            
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('home')}}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('history')}}">History</a></li>
-                            <li><a class="dropdown-item" href="{{route('inspector_police')}}">Inspector General of Police</a></li>
+                            <li><a class="dropdown-item" href="{{route('inspector_police')}}">Inspector General Of Police</a></li>
                             <li><a class="dropdown-item" href="{{route('organization')}}">Organization</a></li>
                             <li><a class="dropdown-item" href="{{route('martyrs')}}">Martyrs</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Public Relations</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Public Relations</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('press_release')}}">Press Release</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">IT Initiatives</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">IT Initiatives</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('projects')}}">Projects</a></li>
                             <li><a class="dropdown-item" href="{{route('collaborate')}}">Collaborate</a></li>
@@ -172,32 +227,30 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Public Services</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Public Service</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('education')}}">Education and Training</a></li>
+                            <li><a class="dropdown-item" href="{{route('education')}}">Education And Training</a></li>
                             <li><a class="dropdown-item" href="{{route('public-safety')}}">Public Safety</a></li>
-                            <li><a class="dropdown-item" href="{{route('employment-services')}}">Employment Services</a></li>
+                            <li><a class="dropdown-item" href="{{route('employment-services')}}">Employment Service</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Gallery</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Gallery</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="gallery.html">Image Gallery</a></li>
+                            <li><a class="dropdown-item" href="{{route('fronted-gallery')}}">Image Gallery</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Notices</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Notices</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('tender')}}">Tenders</a></li>
                             <li><a class="dropdown-item" href="{{route('job')}}">Job Notices</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Contact Us</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Contact Us</a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item btn btn-primary text-white " href="{{route('complain')}}">Lodge Your Complaints</a>
-                            </li>
+                            <li><a class="dropdown-item" href="{{route('complain')}}">Lodge Your Complaints</a></li>
                             <li><a class="dropdown-item" href="{{route('helpline')}}">Helplines</a></li>
                         </ul>
                     </li>
@@ -205,30 +258,58 @@
             </div>
         </div>
     </nav>
-</section>
 
-    <!-- Bootstrap JavaScript -->
-
-
-    <!-- Custom JavaScript for hover functionality -->
+   
     <script>
-        // Maintain hover functionality on desktop
-        function handleHover() {
-            if (window.innerWidth >= 992) {
-                document.querySelectorAll('.nav-item.dropdown').forEach(item => {
-                    item.addEventListener('mouseenter', () => {
-                        item.querySelector('.dropdown-menu').classList.add('show');
+        // Dropdown hover effects for desktop only
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            function enableHover() {
+                if (window.innerWidth >= 992) {
+                    dropdowns.forEach(dropdown => {
+                        // Remove Bootstrap's default click toggle for desktop
+                        const toggle = dropdown.querySelector('.dropdown-toggle');
+                        toggle.setAttribute('data-bs-toggle', '');
+
+                        dropdown.addEventListener('mouseenter', function() {
+                            const dropdownMenu = this.querySelector('.dropdown-menu');
+                            if (dropdownMenu) {
+                                dropdownMenu.style.display = 'block';
+                                setTimeout(() => {
+                                    dropdownMenu.style.opacity = '1';
+                                    dropdownMenu.style.visibility = 'visible';
+                                    dropdownMenu.style.transform = 'translateY(0)';
+                                }, 10);
+                            }
+                        });
+
+                        dropdown.addEventListener('mouseleave', function() {
+                            const dropdownMenu = this.querySelector('.dropdown-menu');
+                            if (dropdownMenu) {
+                                dropdownMenu.style.opacity = '0';
+                                dropdownMenu.style.visibility = 'hidden';
+                                dropdownMenu.style.transform = 'translateY(-10px)';
+                                setTimeout(() => {
+                                    dropdownMenu.style.display = 'none';
+                                }, 300);
+                            }
+                        });
                     });
-                    item.addEventListener('mouseleave', () => {
-                        item.querySelector('.dropdown-menu').classList.remove('show');
+                } else {
+                    // Re-enable Bootstrap's click toggle for mobile
+                    dropdowns.forEach(dropdown => {
+                        const toggle = dropdown.querySelector('.dropdown-toggle');
+                        toggle.setAttribute('data-bs-toggle', 'dropdown');
                     });
-                });
+                }
             }
-        }
 
-        // Initialize on load
-        handleHover();
-        // Update on window resize
-        window.addEventListener('resize', handleHover);
+            // Run on load
+            enableHover();
+
+            // Re-run on resize
+            window.addEventListener('resize', enableHover);
+        });
+        
     </script>
-

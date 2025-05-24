@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emergency Response - GB Police Control Room</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+@extends('layouts.app',['title'=>'Employment Services - GB Police'])
+@section('main')
     <style>
         .police-theme {
             background-color: #004AAD;
@@ -15,21 +9,8 @@
             border-left: 5px solid #FF0000;
         }
     </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="police-theme py-3">
-        <div class="container">
-            <div class="d-flex align-items-center">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" style="height: 50px;" class="me-3">
-                <div>
-                    <h1 class="h4 mb-0">Gilgit Baltistan Police</h1>
-                    <p class="mb-0">24/7 Emergency Services</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    
+<section>
     <main class="container my-5">
         <h1 class="text-center mb-4" role="heading" aria-level="1">Police Control Room</h1>
         
@@ -122,13 +103,7 @@
         </section>
     </main>
 
-    <footer class="police-theme py-4 mt-5">
-        <div class="container text-center small">
-            <p class="mb-0">© 2023 Gilgit Baltistan Police. All rights reserved.</p>
-            <p class="mb-0">Emergency: 05811930033 | Non-Emergency: 05811930034</p>
-        </div>
-    </footer>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
+

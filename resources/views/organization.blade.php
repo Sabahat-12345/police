@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Organization Structure - Gilgit Baltistan Police</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
+@extends('layouts.app',['title' => 'Organization Structure - Gilgit Baltistan Police'])
+@section('main')
+       <style>
         :root {
             --gb-blue: #0047AB;
             --gb-dark: #232b3f;
             --gb-gold: #FFD700;
         }
 
-        .navbar {
-            background-color: var(--gb-dark) !important;
-            border-bottom: 3px solid var(--gb-gold);
-        }
+     
 
         .org-card {
             border: none;
@@ -40,28 +31,8 @@
             color: var(--gb-blue);
         }
     </style>
-</head>
-<body class="bg-light">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}">
-                <img src="{{asset('assets/police.png')}}" alt="GB Police Logo" height="50">
-                GB Police Organization
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#Structure">Structure</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="{{route('helpline')}}">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    
+  <section">
 
     <main class="container my-5">
         <!-- Header Section -->
@@ -204,38 +175,7 @@
         </section>
     </main>
 
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Organizational Chart</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Department Directory</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Annual Reports</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Contact</h5>
-                    <p class="mb-1">Phone: 05811-44000</p>
-                    <p class="mb-1">Email: info@gbpolice.gov.pk</p>
-                    <p>Address: Police HQ, Gilgit</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <p class="mb-0">&copy; 2023 Gilgit Baltistan Police. All rights reserved</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+   
+</section>
+@endsection
+ 
