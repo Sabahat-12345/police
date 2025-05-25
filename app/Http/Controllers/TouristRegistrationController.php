@@ -39,7 +39,7 @@ class TouristRegistrationController extends Controller
         try {
             // Check if tourist already exists
             // Create new tourist record
-        $tourist = TouristRegistration::create([
+        $tourist= TouristRegistration::create([
             'full_name' => $validator->validated()['full_name'],
             'email' => $request->email,
             'phone' => $request->phone,
@@ -51,7 +51,7 @@ class TouristRegistrationController extends Controller
             'guide' => $request->guide,
             'emergency_name' => $request->emergency_name,
             'emergency_phone' => $request->emergency_phone,
-            'terms' => $request->terms,
+            'terms' => $request->has('terms'),
         ]);
         
         } catch (\Exception $e) {

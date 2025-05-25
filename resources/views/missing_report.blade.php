@@ -88,26 +88,58 @@
 
         <!-- Quick Report Form -->
         <section aria-label="Quick report" class="mb-5">
+       @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops! Something went wrong.</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
             <h2 class="h4 mb-3" role="heading" aria-level="2"><i class="bi bi-file-earmark-medical"></i> Preliminary Report</h2>
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('report.store') }}" method="POST">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">Missing Person's Name</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name="missing_name"  required>
+                                @error('missing_name')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Last Seen Location</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name="last_seen_location" required>
+                                @error('last_seen_location')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Date/Time of Disappearance</label>
-                                <input type="datetime-local" class="form-control" required>
+                                <input type="datetime-local" class="form-control" name="disappearance_datetime" required>
+                                @error('disappearance_datetime')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Your Contact Number</label>
-                                <input type="tel" class="form-control" required>
+                                <input type="tel" class="form-control"  name="contact_number" required>
+                                @error('contact_number')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">

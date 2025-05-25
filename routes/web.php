@@ -8,6 +8,7 @@ use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
 use App\Http\Controllers\AdminSliderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PreliminaryReportController;
 use App\Http\Controllers\TouristRegistrationController;
 use App\Models\admin\Slider;
 use GuzzleHttp\Middleware;
@@ -179,6 +180,7 @@ Route::post('/collaborate', [CollaborateController::class, 'store'])->name('coll
 
 Route::post('/formm', [ApplicationStatusController::class, 'checkStatus'])->name('status.check');
 Route::post('/tourist-safety', [TouristRegistrationController::class, 'register'])->name('tourist.register');
+Route::post('/missing', [PreliminaryReportController::class, 'store'])->name('report.store');
 
 
 
