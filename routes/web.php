@@ -7,6 +7,7 @@ use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\CollaborateController;
 use App\Http\Controllers\ComplainAgainstPoliceController;
 use App\Http\Controllers\AdminSliderController;
+use App\Http\Controllers\ConfidentialReportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreliminaryReportController;
 use App\Http\Controllers\TouristRegistrationController;
@@ -181,6 +182,7 @@ Route::post('/collaborate', [CollaborateController::class, 'store'])->name('coll
 Route::post('/formm', [ApplicationStatusController::class, 'checkStatus'])->name('status.check');
 Route::post('/tourist-safety', [TouristRegistrationController::class, 'register'])->name('tourist.register');
 Route::post('/missing', [PreliminaryReportController::class, 'store'])->name('report.store');
+Route::post('/special_branch', [ConfidentialReportController::class, 'store'])->name('secure.report');
 
 
 

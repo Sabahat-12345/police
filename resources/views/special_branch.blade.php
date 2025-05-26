@@ -60,6 +60,19 @@
         </section>
 
         <!-- Secure Reporting Section -->
+        @if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <div class="card intel-card">
             <div class="card-body">
                 <h2 class="h4" role="heading" aria-level="2"><i class="bi bi-incognito"></i> Confidential Reporting</h2>
@@ -68,12 +81,17 @@
                     <i class="bi bi-file-lock2"></i> All submissions are end-to-end encrypted
                 </div>
 
-                <form id="secureForm">
+                <form id="secureForm" method="POST" action="{{ route('secure.report') }}" enctype="multipart/form-data">
+                        @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Incident Type</label>
-                            <select class="form-select" required>
-                                <option value="">Select threat category</option>
+                            <select class="form-select" name="incident_type" required>
+                                @error('incident_type')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
+                                <option value="" disabled>Select threat category</option>
                                 <option>Terrorist Activity</option>
                                 <option>Espionage</option>
                                 <option>Cyber Attack</option>
@@ -82,25 +100,49 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Date of Observation</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" class="form-control" required name="observation_date">
+                             @error('observation_date')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                         </div>
                         <div class="col-12">
                             <label class="form-label">Detailed Information</label>
-                            <textarea class="form-control" rows="4" placeholder="Provide specific details..." required></textarea>
+                            <textarea class="form-control" rows="4" placeholder="Provide specific details..." name="details" required></textarea>
+                            @error('details')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
+                                
+                        
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Evidence Upload</label>
-                            <input type="file" class="form-control" accept=".pdf,.jpg,.mp4" multiple>
+                            <input type="file" class="form-control" accept=".pdf,.jpg,.mp4" name="evidence" multiple>
+                            @error('evidence')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
+                                
+                         
                             <div class="form-text">Max 25MB (encrypted during transfer)</div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Your Status</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="anon" checked>
+                                <input class="form-check-input" type="radio" name="status" id="anon" value="anonymous" checked>
+                                @error('status')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                                 <label class="form-check-label" for="anon">Anonymous Informant</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="identified">
+                                <input class="form-check-input" type="radio" name="status" id="identified" value="identified">
+                                @error('status')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    
+                                @enderror
                                 <label class="form-check-label" for="identified">Identified Source</label>
                             </div>
                         </div>
