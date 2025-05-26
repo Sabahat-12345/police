@@ -59,50 +59,19 @@
                     </label>
                 </div>
             </div>
-            <img src="{{ asset('admin/images/sliders/' . $slider->image) }}" class="slider-preview w-100">
-
+            <img src="{{ asset('admin/images/slider/' . $slider->image) }}" class="slider-preview w-100">
             <div class="slider-controls">
                 <div class="slider-order">
                     <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
                     <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
                 </div>
                 <div>
-                    <button class="btn btn-sm btn-danger delete-slide">
+                    <button class="btn btn-sm btn-danger delete-slide" data-slideid="{{ $slider->id }}">
                         <i class="fas fa-trash"></i> Delete
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteSlideModal" tabindex="-1" role="dialog" aria-labelledby="deleteSlideModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteSlideModalLabel">Confirm Delete</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-              
-                <div class="modal-body">
-                    Are you sure you want to delete this slide? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('admin.slider.delete', $slider->id) }}"  method="POST">
-            @csrf
-              
-          
-                    <button class="btn btn-danger" type="submit" id="confirmSlideDelete">Delete</button>
-                     </form>
-                </div>
-
-            </div>
-       
-    </div>
-</div>
-
         @endforeach
     </div>
 </div>
@@ -134,6 +103,30 @@
     </div>
 </div>
 
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteSlideModal" tabindex="-1" role="dialog" aria-labelledby="deleteSlideModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form id="confirmDeleteForm" method="POST">
+            @csrf
+            @method('DELETE')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteSlideModalLabel">Confirm Delete</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this slide? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @push('scripts')
 <script>
@@ -143,7 +136,7 @@
         $(document).on('click', '.delete-slide', function(e) {
             e.preventDefault();
             var slideId = $(this).data('slideid');
-            var deleteUrl = "{{ url('admin/slider') }}/" + slideId;
+            var deleteUrl = "{{ url('admin/slider/delete') }}/" + slideId;
             $('#confirmDeleteForm').attr('action', deleteUrl);
             $('#deleteSlideModal').modal('show');
         });

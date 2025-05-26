@@ -246,9 +246,11 @@ Route::get('/admin apply form', function (){
 Route::prefix('/admin')->controller(AdminSliderController::class)->group(function () {
     Route::get('/slider', 'index')->name('admin.slider');
     Route::post('/slider/add-image', 'imageUpload')->name('juu');
-  Route::post('/slider/delete/{id}','delete' )->name('admin.slider.delete');
+  Route::delete('/slider/delete/{id}','destroy' )->name('admin.slider.delete');
 
 });
+
+
 
 
 

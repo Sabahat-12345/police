@@ -113,16 +113,16 @@
     </style>
      
 
- <!-- Carousel -->
+<!-- Auto Carousel Slider -->
 <div id="autoSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
   <!-- Indicators -->
   <div class="carousel-indicators">
     @foreach ($sliders as $index => $slider)
-      <button type="button" 
-              data-bs-target="#autoSlider" 
-              data-bs-slide-to="{{ $index }}" 
-              class="{{ $index === 0 ? 'active' : '' }}" 
-              aria-current="{{ $index === 0 ? 'true' : 'false' }}" 
+      <button type="button"
+              data-bs-target="#autoSlider"
+              data-bs-slide-to="{{ $index }}"
+              class="{{ $index === 0 ? 'active' : '' }}"
+              aria-current="{{ $index === 0 ? 'true' : 'false' }}"
               aria-label="Slide {{ $index + 1 }}"></button>
     @endforeach
   </div>
@@ -131,9 +131,9 @@
   <div class="carousel-inner">
     @foreach ($sliders as $index => $slider)
       <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-        <img src="{{ asset('admin/images/sliders/' . $slider->image) }}" 
-             class="d-block w-100 img-fluid" 
-             alt="Slide {{ $index + 1 }}" 
+        <img src="{{ asset('admin/images/slider/' . $slider->image) }}"
+             class="d-block w-100 img-fluid"
+             alt="Slide {{ $index + 1 }}"
              loading="lazy">
       </div>
     @endforeach
@@ -400,7 +400,7 @@
                               <img src="{{asset('assets/news2.jpg')}}" class="card-img-top" alt="News 2">
                               <div class="card-body">
                                   <p class="card-text">آئی جی جی بی/انسداد پولیو مہم/حفاظتی انتظامات/جائزہ۔۔</p>
-                                  <a href="{{route('gallery')}}" class="btn btn-danger">Click to explore more</a>
+                                  <a href="{{route('fronted-gallery')}}" class="btn btn-danger">Click to explore more</a>
                                   <p class="text-muted mt-2">22-03-2025</p>
                               </div>
                           </div>
@@ -502,14 +502,17 @@
   
    
 <!-- Initialize Carousel with Autoplay -->
+<!-- Bootstrap Carousel Settings -->
 <script>
-  const myCarousel = new bootstrap.Carousel(document.getElementById('autoSlider'), {
-      interval: 3000,
+  document.addEventListener("DOMContentLoaded", function () {
+    const myCarousel = new bootstrap.Carousel(document.getElementById('autoSlider'), {
+      interval: 3000, // 3 seconds
       wrap: true,
-      pause: false
+      pause: false // Keep autoplay even on hover
+    });
   });
 </script>
-     <!-- Custom JavaScript for hover functionality -->
+     {{-- <!-- Custom JavaScript for hover functionality -->
      <script>
       // Maintain hover functionality on desktop
       function handleHover() {
@@ -529,7 +532,7 @@
       handleHover();
       // Update on window resize
       window.addEventListener('resize', handleHover);
-  </script>
+  </script> --}}
 
    
 
