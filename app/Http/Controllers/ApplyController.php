@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ApplyRequest;
 use App\Models\Apply;
-
+use Illuminate\Support\Facades\App;
 
 class ApplyController extends Controller
 {
+
+    public function index()
+    {
+        $models = Apply::get();
+        return view('admin.apply', compact('models'));
+    }
+
     public function applyPost(ApplyRequest  $request)
     {
         // dd($request->all());
@@ -27,8 +34,8 @@ class ApplyController extends Controller
         if ($request->hasFile('resume')) {
             $file = $request->file('resume');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('resumes'), $filename);
-            $apply->resume = $filename;
+            $filePath =  $file->move(public_path('resumes'), $filename);
+            $apply->resume = $filePath;
         } else {
             $apply->resume = null; // or handle as needed
         }

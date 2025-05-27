@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\ApplicationStatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComplainController;
@@ -46,9 +47,7 @@ Route::get('/missing', function (){
     return view('missing_report'); 
 })->name('missing');
 
-Route::get('/fronted-gallery', function (){
-    return view('gallery'); 
-})->name('fronted-gallery');
+Route::get('/fronted-gallery' , [HomeController::class, 'getGallery'])->name('fronted-gallery');
 
 Route::get('/education', function (){
     return view('education-traning'); 
@@ -234,20 +233,29 @@ Route::get('/charts', function (){
 Route::get('/tables', function (){
     return view('admin.tables'); 
 })->name('tables');
-Route::get('/admin-gallery', function (){
-    return view('admin.gallery'); 
-})->name('gallery');
+// Route::get('/admin-gallery', function (){
+//     return view('admin.gallery'); 
+// })->name('gallery');
 
 Route::get('/admin apply form', function (){
     return view('admin.apply'); 
 })->name('admin-apply');
 
 
+Route::get('/admin/apply/list', [ApplyController::class, 'index'])->name('admin-apply.list');
+
 Route::prefix('/admin')->controller(AdminSliderController::class)->group(function () {
     Route::get('/slider', 'index')->name('admin.slider');
     Route::post('/slider/add-image', 'imageUpload')->name('juu');
   Route::delete('/slider/delete/{id}','destroy' )->name('admin.slider.delete');
 
+});
+
+Route::prefix('/admin')->group(function () {
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('admin.gallery.index');
+    Route::post('/gallery/store', [GalleryController::class, 'store'])->name('admin.gallery.store');
+    Route::put('/gallery/update/{id}', [GalleryController::class, 'update'])->name('admin.gallery.update');
+    Route::delete('/gallery/delete/{id}', [GalleryController::class, 'destroy'])->name('admin.gallery.delete');
 });
 
 

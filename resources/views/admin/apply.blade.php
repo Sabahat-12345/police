@@ -30,22 +30,63 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>Email Address</th>
-                            <th>Phone Number</th>
-                            <th>CNIC Number</th>
-                            <th>Date of Birth</th>
-                            <th>Applying for Position</th>
-                            <th>Highest Qualification</th>
-                            <th>Work Experience</th>
-                            <th>Resume</th>
-                            <th>Actions</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
-                        <tr>
+                        @forelse ($models as $model)
+                            <tr>
+                            <td>{{$model->fullName}}</td>
+                            <td>{{$model->email}}</td>
+                            <td>{{$model->phone}}</td>
+                            <td>{{$model->cnic}}</td>
+                            <td>{{$model->dob}}</td>
+                            <td>{{$model->jobPosition}}</td>
+                            <td>{{$model->education}}</td>
+                            <td>{{$model->experience}}</td>
+                            <td><img src="{{asset($model->resume)}}" alt="" style="width: 40px; height:40px;"></td>
+                            <td>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i> View</a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i> Edit</a>
+                                        <a class="dropdown-item text-success" href="#"><i class="fas fa-check fa-sm fa-fw mr-2"></i> Approve</a>
+                                        <a class="dropdown-item text-warning" href="#"><i class="fas fa-times fa-sm fa-fw mr-2"></i> Reject</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item text-danger" href="#"><i class="fas fa-trash fa-sm fa-fw mr-2"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                            <tr>
+                               <td colspan="1"> No Additional Data Found ........</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+@endsection
+@push('scripts')
+<!-- Page specific scripts -->
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        responsive: true
+    });
+});
+</script>
+@endpush
+
+
+
+                        {{-- <tr>
                             <td>Muhammad Ahmed</td>
                             <td>ahmed@example.com</td>
                             <td>0300-1234567</td>
@@ -200,24 +241,4 @@
                                     </div>
                                 </div>
                             </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-</div>
-<!-- /.container-fluid -->
-
-@endsection
-@push('scripts')
-<!-- Page specific scripts -->
-<script>
-$(document).ready(function() {
-    $('#dataTable').DataTable({
-        responsive: true
-    });
-});
-</script>
-@endpush
+                        </tr> --}}

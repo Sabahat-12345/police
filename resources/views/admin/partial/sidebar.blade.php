@@ -38,7 +38,7 @@
         <div id="collapseMedia" class="collapse" aria-labelledby="headingMedia" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Media Components:</h6>
-                <a class="collapse-item" href="{{ route('gallery') }}">Gallery</a>
+                <a class="collapse-item" href="{{ route('admin.gallery.index') }}">Gallery</a>
                 <a class="collapse-item" href="{{ route('admin.slider') }}">Slider</a>
             </div>
         </div>
@@ -88,7 +88,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Tables:</h6>
-                <a class="collapse-item" href="#apply">Apply</a>
+                <a class="collapse-item" href="{{route('admin-apply.list')}}">Apply</a>
                 <a class="collapse-item" href="#complain">Complain</a>
                 <a class="collapse-item" href="#complain-against-police">Complain Against Police</a>
                 <a class="collapse-item" href="#application-status">Application Status</a>

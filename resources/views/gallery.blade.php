@@ -28,7 +28,15 @@
 <div class="container gallery-container">
     <h2 class="text-center mb-4">Gilgit Baltistan Police Gallery</h2>
     <div class="row">
-        <!-- Existing images -->
+
+        @forelse ($galleries as $gallery)
+              <div class="col-md-4 mb-4">
+            <div class="gallery-item">
+                <img src="{{asset($gallery->image_path)}}" alt="Police Event">
+            </div>
+        </div>
+        @empty
+                   <!-- Existing images -->
         <div class="col-md-4 mb-4">
             <div class="gallery-item">
                 <img src="{{asset('assets/police event.jpg')}}" alt="Police Event">
@@ -61,6 +69,7 @@
                 <img src="{{asset('assets/Community Engagement.jpg')}}" alt="Community Engagement">
             </div>
         </div>
+        @endforelse
     </div>
 </div>
 

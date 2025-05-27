@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Gallery;
 use Illuminate\Http\Request;
 use App\Models\admin\Slider;
 
@@ -15,5 +16,11 @@ class HomeController extends Controller
                             ->get();
 
     return view('home', compact('sliders'));
+}
+
+public function getGallery() {
+    // GalleryController ka index method call karo
+    $galleries = Gallery::get();
+    return view('gallery', compact('galleries'));
 }
 }
