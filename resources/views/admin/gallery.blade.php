@@ -15,9 +15,13 @@
         margin-bottom: 15px;
     }
     .gallery-img {
-        max-width: 100%;
+    
         height: auto;
         display: block;
+           width: 100%;
+        height: 250px; /* Set fixed height */
+        object-fit: cover; /* Crop and fill the box */
+        border-radius: 5px;
     }
     .gallery-content {
         margin-top: 15px;
@@ -37,7 +41,7 @@
         @foreach ($galleryItems as $item)
             <div class="col-lg-6 gallery-item">
                 <div class="gallery-img-container">
-                    <img src="{{ asset($item->image_path) }}" alt="Gallery Image" class="gallery-img">
+                    <img src="{{ asset($item->image_path) }}" alt="Gallery Image" class="gallery-img ">
                     <div class="position-absolute" style="bottom: 10px; right: 10px;">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox"

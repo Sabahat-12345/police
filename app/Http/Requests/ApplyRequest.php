@@ -30,7 +30,7 @@ class ApplyRequest extends FormRequest
             'jobPosition'  => 'required|in:Police Constable,Sub-Inspector,IT Officer',
             'education'    => 'required|string|max:255',
             'experience'   => 'nullable|string',
-            'resume'       => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'resume'       => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
             ];
         }
     

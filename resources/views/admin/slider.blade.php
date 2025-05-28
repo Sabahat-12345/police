@@ -1,152 +1,197 @@
 @extends('admin.include.app')
-@section('title', 'Gallery Management')
+@section('title', 'Admin Dashboard - Slider Management')
 @section('content')
-<style>
-    .gallery-item {
-        position: relative;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #f8f9fc;
-    }
-    .gallery-img-container {
-        position: relative;
-        margin-bottom: 15px;
-    }
-    .gallery-img {
-        max-width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border: 1px solid #ddd;
-    }
-    .gallery-content {
-        margin-top: 15px;
-    }
-    .gallery-active {
-        border-left: 4px solid #4e73df;
-    }
-</style>
 
-<div class="container-fluid">
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <style>
+        .slider-item {
+            border: 1px solid #e3e6f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f8f9fc;
+        }
+
+        .slider-preview {
+            max-width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .slider-order {
+            display: flex;
+            align-items: center;
+        }
+
+        .order-btn {
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .slider-active {
+            border-left: 4px solid #4e73df;
+        }
+    </style>
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+
+
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Slider Management</h1>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addSliderModal">
+                <i class="fas fa-plus"></i> Add New Slide
+            </button>
         </div>
-    @endif
 
-    @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Gallery Management</h1>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#addGalleryItemModal">
-            <i class="fas fa-plus"></i> Add New Item
-        </button>
-    </div>
-
-    <!-- Gallery Items -->
-    <div class="row" id="galleryItemsContainer">
-        @foreach ($galleryItems as $item)
-            <div class="col-md-6 col-lg-4 gallery-item {{ $item->is_active ? 'gallery-active' : '' }}">
-                <div class="gallery-header d-flex justify-content-between align-items-center mb-2">
-                    <h5 class="m-0 font-weight-bold text-primary">Gallery Item #{{ $item->id }}</h5>
-                    <div class="form-check">
-                        <input class="form-check-input gallery-status" type="checkbox" id="gallery-status-{{ $item->id }}"
-                               data-itemid="{{ $item->id }}" {{ $item->is_active ? 'checked' : '' }}>
-                        <label class="form-check-label" for="gallery-status-{{ $item->id }}">Active</label>
+        <!-- Slider Items -->
+        <div class="row" id="sliderItemsContainer">
+            @foreach ($sliders as $slider)
+                <div class="col-md-6 col-lg-4 slider-item slider-active">
+                    <div class="slider-header d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="m-0 font-weight-bold text-primary">Slide #{{ $loop->iteration }}</h5>
+                        <div class="form-check">
+                            <input class="form-check-input slide-status" type="checkbox" checked
+                                id="slide-status-{{ $slider->id }}">
+                            <label class="form-check-label" for="slide-status-{{ $slider->id }}">
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                    <img src="{{ asset($slider->image) }}" class="slider-preview w-100">
+                    <div class="slider-controls">
+                        <div class="slider-order">
+                            <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
+                            <span class="order-btn text-primary" data-direction="down"><i
+                                    class="fas fa-arrow-down"></i></span>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-danger delete-slide" data-slideid="{{ $slider->id }}">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <img src="{{ asset('admin/images/gallery/' . $item->image_path) }}" alt="Gallery Image" class="gallery-img w-100">
-                <div class="gallery-controls text-right">
-                    <button class="btn btn-sm btn-danger delete-item" data-itemid="{{ $item->id }}">
-                        <i class="fas fa-trash"></i> Delete
-                    </button>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
-
-<!-- Add Gallery Item Modal -->
-<div class="modal fade" id="addGalleryItemModal" tabindex="-1" role="dialog" aria-labelledby="addGalleryItemModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addGalleryItemModalLabel">Add New Gallery Item</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="addGalleryItemForm" action="{{ route('admin.gallery.store') }}" enctype="multipart/form-data" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="galleryImage">Upload Image</label>
-                        <input type="file" class="form-control-file" id="galleryImage" name="image" accept="image/jpeg,image/png" required>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="is_active" id="newItemActive">
-                        <label class="form-check-label" for="newItemActive">Active</label>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save Image</button>
-                    </div>
-                </form>
-            </div>
+            @endforeach
         </div>
     </div>
-</div>
 
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteGalleryItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteGalleryItemModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form id="deleteItemForm" method="POST">
-            @csrf
-            @method('DELETE')
+    <!-- Add Slider Modal -->
+    <div class="modal fade" id="addSliderModal" tabindex="-1" role="dialog" aria-labelledby="addSliderModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteGalleryItemModalLabel">Confirm Delete</h5>
+                    <h5 class="modal-title" id="addSliderModalLabel">Add New Slide</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this gallery item? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <form id="addSliderForm" action="{{ route('juu') }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="slideImage">Max 3 at a time</label>
+                            <input type="file" class="form-control-file" id="slideImage" name="image" multiple
+                                accept="image/jpeg,image/png" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="submit">Save Slide</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
 
-@push('scripts')
-<script>
-    $(document).ready(function() {
-        // Handle delete button click
-        $(document).on('click', '.delete-item', function(e) {
-            e.preventDefault();
-            var itemId = $(this).data('itemid');
-            var deleteUrl = "{{ url('admin/gallery/delete') }}/" + itemId;
-            $('#deleteItemForm').attr('action', deleteUrl);
-            $('#deleteGalleryItemModal').modal('show');
-        });
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteSlideModal" tabindex="-1" role="dialog" aria-labelledby="deleteSlideModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="confirmDeleteForm" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteSlideModalLabel">Confirm Delete</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this slide? This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        // Handle gallery status toggle
-        $(document).on('change', '.gallery-status', function() {
-            var galleryItem = $(this).closest('.gallery-item');
-            $(this).is(':checked') ? galleryItem.addClass('gallery-active') : galleryItem.removeClass('gallery-active');
-        });
-    });
-</script>
-@endpush
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+
+                // Handle delete button click
+                $(document).on('click', '.delete-slide', function(e) {
+                    e.preventDefault();
+                    var slideId = $(this).data('slideid');
+                    var deleteUrl = "{{ url('admin/slider/delete') }}/" + slideId;
+                    $('#confirmDeleteForm').attr('action', deleteUrl);
+                    $('#deleteSlideModal').modal('show');
+                });
+
+                // Handle slide status toggle
+                $(document).on('change', '.slide-status', function() {
+                    var slideItem = $(this).closest('.slider-item');
+                    $(this).is(':checked') ? slideItem.addClass('slider-active') : slideItem.removeClass(
+                        'slider-active');
+                });
+
+                // Handle order buttons
+                $(document).on('click', '.order-btn', function() {
+                    var direction = $(this).data('direction');
+                    var slideItem = $(this).closest('.slider-item');
+
+                    if (direction === 'up') {
+                        slideItem.insertBefore(slideItem.prev());
+                    } else {
+                        slideItem.insertAfter(slideItem.next());
+                    }
+
+                    // Update numbering
+                    $('.slider-item').each(function(index) {
+                        $(this).find('h5').text('Slide #' + (index + 1));
+                    });
+                });
+
+            });
+        </script>
+    @endpush
+
 @endsection

@@ -115,28 +115,48 @@
 
 <!-- Auto Carousel Slider -->
 <div id="autoSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
   <!-- Indicators -->
   <div class="carousel-indicators">
-    @foreach ($sliders as $index => $slider)
+    @forelse($sliders as $index => $slider)
       <button type="button"
               data-bs-target="#autoSlider"
               data-bs-slide-to="{{ $index }}"
               class="{{ $index === 0 ? 'active' : '' }}"
               aria-current="{{ $index === 0 ? 'true' : 'false' }}"
               aria-label="Slide {{ $index + 1 }}"></button>
-    @endforeach
+    @empty
+      @for ($i = 0; $i < 3; $i++)
+        <button type="button"
+                data-bs-target="#autoSlider"
+                data-bs-slide-to="{{ $i }}"
+                class="{{ $i === 0 ? 'active' : '' }}"
+                aria-current="{{ $i === 0 ? 'true' : 'false' }}"
+                aria-label="Default Slide {{ $i + 1 }}"></button>
+      @endfor
+    @endforelse
   </div>
 
   <!-- Slides -->
   <div class="carousel-inner">
-    @foreach ($sliders as $index => $slider)
+    @forelse($sliders as $index => $slider)
       <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-        <img src="{{ asset('admin/images/slider/' . $slider->image) }}"
+        <img src="{{ asset($slider->image) }}"
              class="d-block w-100 img-fluid"
              alt="Slide {{ $index + 1 }}"
              loading="lazy">
       </div>
-    @endforeach
+    @empty
+      <div class="carousel-item active">
+        <img src="{{ asset('assets/slider1.jpg') }}" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('assets/slider2.png') }}" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('assets/slider3.jpg') }}" class="d-block w-100" alt="Slide 3">
+      </div>
+    @endforelse
   </div>
 
   <!-- Controls -->
@@ -148,7 +168,13 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+
 </div>
+
+
+
+
+  
     <!-- services -->
     <!-- Main Menu -->
 
@@ -540,5 +566,3 @@
 @endsection
  
  
-   
-    

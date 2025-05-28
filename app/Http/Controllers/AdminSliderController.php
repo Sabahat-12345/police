@@ -28,10 +28,12 @@ public function imageUpload(Request $request)
         $image = $request->file('image');
         $imageNamed = uniqid() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('admin/images/slider'), $imageNamed);
-        $slider->image = $imageNamed; // ✅ store only the filename
+
+        // ✅ Save the full relative path
+        $slider->image = 'admin/images/slider/' . $imageNamed;
     }
 
-    $slider->status = 'active'; // or 'active' if needed
+    $slider->status = 'active';
     $slider->save();
 
     return redirect()->back()->with('success', 'Image uploaded successfully.');
