@@ -38,26 +38,33 @@
         .slider-active {
             border-left: 4px solid #4e73df;
         }
+
+        .slider-inactive {
+            border-left: 4px solid #dc3545;
+            opacity: 0.7;
+        }
     </style>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-
+        <!-- Success/Error Messages -->
+        <div id="alertContainer"></div>
 
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
         @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
+                <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Slider Management</h1>
@@ -69,12 +76,14 @@
         <!-- Slider Items -->
         <div class="row" id="sliderItemsContainer">
             @foreach ($sliders as $slider)
-                <div class="col-md-6 col-lg-4 slider-item slider-active">
+                <div class="col-md-6 col-lg-4 slider-item {{ $slider->status == 'active' ? 'slider-active' : 'slider-inactive' }}">
                     <div class="slider-header d-flex justify-content-between align-items-center mb-2">
                         <h5 class="m-0 font-weight-bold text-primary">Slide #{{ $loop->iteration }}</h5>
                         <div class="form-check">
-                            <input class="form-check-input slide-status" type="checkbox" checked
-                                id="slide-status-{{ $slider->id }}">
+                            <input class="form-check-input slide-status" type="checkbox" 
+                                {{ $slider->status == 'active' ? 'checked' : '' }}
+                                id="slide-status-{{ $slider->id }}" 
+                                data-slider-id="{{ $slider->id }}">
                             <label class="form-check-label" for="slide-status-{{ $slider->id }}">
                                 Active
                             </label>
@@ -84,8 +93,7 @@
                     <div class="slider-controls">
                         <div class="slider-order">
                             <span class="order-btn text-primary" data-direction="up"><i class="fas fa-arrow-up"></i></span>
-                            <span class="order-btn text-primary" data-direction="down"><i
-                                    class="fas fa-arrow-down"></i></span>
+                            <span class="order-btn text-primary" data-direction="down"><i class="fas fa-arrow-down"></i></span>
                         </div>
                         <div>
                             <button class="btn btn-sm btn-danger delete-slide" data-slideid="{{ $slider->id }}">
@@ -117,6 +125,10 @@
                             <input type="file" class="form-control-file" id="slideImage" name="image" multiple
                                 accept="image/jpeg,image/png" required>
                         </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> New slides will be inactive by default. You can activate them after uploading.
+                        </div>
+                        
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <button class="btn btn-primary" type="submit">Save Slide</button>
@@ -157,36 +169,44 @@
         <script>
             $(document).ready(function() {
 
-                // Handle delete button click
-                $(document).on('click', '.delete-slide', function(e) {
+                // Simple alert function
+                function showAlert(message, type = 'success') {
+                    var alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+                    var alertHtml = `<div class="alert ${alertClass} alert-dismissible fade show">
+                        ${message} <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>`;
+                    $('#alertContainer').html(alertHtml);
+                    setTimeout(() => $('.alert').fadeOut(), 4000);
+                }
+
+                // Delete slider
+                $('.delete-slide').click(function(e) {
                     e.preventDefault();
                     var slideId = $(this).data('slideid');
-                    var deleteUrl = "{{ url('admin/slider/delete') }}/" + slideId;
-                    $('#confirmDeleteForm').attr('action', deleteUrl);
+                    $('#confirmDeleteForm').attr('action', "{{ url('admin/slider/delete') }}/" + slideId);
                     $('#deleteSlideModal').modal('show');
                 });
 
-                // Handle slide status toggle
-                $(document).on('change', '.slide-status', function() {
+                // Toggle status
+                $('.slide-status').change(function() {
                     var slideItem = $(this).closest('.slider-item');
-                    $(this).is(':checked') ? slideItem.addClass('slider-active') : slideItem.removeClass(
-                        'slider-active');
-                });
+                    var sliderId = $(this).data('slider-id');
+                    var status = $(this).is(':checked') ? 'active' : 'inactive';
 
-                // Handle order buttons
-                $(document).on('click', '.order-btn', function() {
-                    var direction = $(this).data('direction');
-                    var slideItem = $(this).closest('.slider-item');
+                    // Update UI
+                    slideItem.toggleClass('slider-active slider-inactive');
 
-                    if (direction === 'up') {
-                        slideItem.insertBefore(slideItem.prev());
-                    } else {
-                        slideItem.insertAfter(slideItem.next());
-                    }
-
-                    // Update numbering
-                    $('.slider-item').each(function(index) {
-                        $(this).find('h5').text('Slide #' + (index + 1));
+                    // Update via AJAX
+                    $.post("{{ url('admin/slider/status') }}/" + sliderId, {
+                        status: status,
+                        _token: '{{ csrf_token() }}'
+                    }).done(response => {
+                        if (response.success) showAlert(response.message);
+                    }).fail(() => {
+                        // Revert on error
+                        $(this).prop('checked', !$(this).is(':checked'));
+                        slideItem.toggleClass('slider-active slider-inactive');
+                        showAlert('Error updating status!', 'error');
                     });
                 });
 
