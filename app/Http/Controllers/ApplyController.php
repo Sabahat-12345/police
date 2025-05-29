@@ -34,8 +34,10 @@ class ApplyController extends Controller
         if ($request->hasFile('resume')) {
             $file = $request->file('resume');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $filePath =  $file->move(public_path('resumes'), $filename);
-            $apply->resume = $filePath;
+            // $filePath =  $file->move(public_path('resumes'), $filename);
+            // $apply->resume = $filePath;
+                $file->move(public_path('resumes'), $filename);
+    $apply->resume = 'resumes/' . $filename;  
         } else {
             $apply->resume = null; // or handle as needed
         }
@@ -54,5 +56,77 @@ class ApplyController extends Controller
 
       
 
+    }
+     // Display all applications
+  
+
+    // Show details of a specific application
+    public function show($id)
+    {
+          $model = Apply::findOrFail($id);
+    $models = collect([$model]);
+    return view('admin.apply', compact('models'));
+    }
+
+    // Show the edit form for an application
+    public function edit($id)
+    {
+        $model = Apply::findOrFail($id);
+        
+        return view('admin.apply', compact('model'));
+    }
+
+    // Update application
+  public function update(Request $request, $id)
+{
+    $model = Apply::findOrFail($id);
+    $model->fullName = $request->fullName;
+    $model->email = $request->email;
+    $model->phone = $request->phone;
+    $model->cnic = $request->cnic;
+    $model->dob = $request->dob;
+    $model->jobPosition = $request->jobPosition;
+    $model->education = $request->education;
+    $model->experience = $request->experience;
+
+    if ($request->hasFile('resume')) {
+        $resume = $request->file('resume');
+        $resumeName = time() . '.' . $resume->getClientOriginalExtension();
+        $resume->move(public_path('resumes'), $resumeName);
+        $model->resume = 'resumes/' . $resumeName;
+    }
+
+    $model->save();
+
+    return redirect()->back()->with('success', 'Application updated successfully!');
+}
+
+    // Approve an application
+    public function approve($id)
+    {
+        $apply = Apply::findOrFail($id);
+        $apply->status = 'approved';
+        $apply->save();
+
+        return redirect()->back()->with('success', 'Application approved.');
+    }
+
+    // Reject an application
+    public function reject($id)
+    {
+        $apply = Apply::findOrFail($id);
+        $apply->status = 'rejected';
+        $apply->save();
+
+        return redirect()->back()->with('error', 'Application rejected.');
+    }
+
+    // Delete an application
+    public function destroy($id)
+    {
+        $apply = Apply::findOrFail($id);
+        $apply->delete();
+
+        return redirect()->back()->with('success', 'Application deleted.');
     }
 }

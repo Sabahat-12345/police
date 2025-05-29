@@ -237,12 +237,12 @@ Route::get('/tables', function (){
 //     return view('admin.gallery'); 
 // })->name('gallery');
 
-Route::get('/admin apply form', function (){
+Route::get('/admin/apply/form', function (){
     return view('admin.apply'); 
 })->name('admin-apply');
 
 
-Route::get('/admin/apply/list', [ApplyController::class, 'index'])->name('admin-apply.list');
+// Route::get('/admin/apply/list', [ApplyController::class, 'index'])->name('admin-apply.list');
 
 Route::prefix('/admin')->controller(AdminSliderController::class)->group(function () {
     Route::get('/slider', 'index')->name('admin.slider');
@@ -258,7 +258,16 @@ Route::prefix('/admin')->group(function () {
     Route::delete('/gallery/delete/{id}', [GalleryController::class, 'destroy'])->name('admin.gallery.delete');
 });
 
+Route::prefix('admin/apply')->group(function () {
+    Route::get('/list', [ApplyController::class, 'index'])->name('admin-apply.list'); // 👈 Add this
 
+    Route::get('/{id}', [ApplyController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [ApplyController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [ApplyController::class, 'update'])->name('update');
+    Route::post('/{id}/approve', [ApplyController::class, 'approve'])->name('approve');
+    Route::post('/{id}/reject', [ApplyController::class, 'reject'])->name('reject');
+    Route::delete('/{id}', [ApplyController::class, 'destroy'])->name('destroy');
+});
 
 
 

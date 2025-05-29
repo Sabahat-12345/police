@@ -25,7 +25,7 @@ class ApplyRequest extends FormRequest
             'fullName'     => 'required|string|max:255|min:3',
             'email'        => 'required|email',
             'phone'        => 'required|string|max:50|min:10',
-            'cnic'         => 'required|string|max:25|min:17',
+            'cnic'         => 'required|string|max:25|min:13',
             'dob'          => 'required|date|before:today',
             'jobPosition'  => 'required|in:Police Constable,Sub-Inspector,IT Officer',
             'education'    => 'required|string|max:255',

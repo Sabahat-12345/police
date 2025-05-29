@@ -27,7 +27,23 @@
         margin-top: 15px;
     }
 </style>
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+@endif
 
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+@endif
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Gallery Management</h1>
@@ -44,9 +60,9 @@
                     <img src="{{ asset($item->image_path) }}" alt="Gallery Image" class="gallery-img ">
                     <div class="position-absolute" style="bottom: 10px; right: 10px;">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
+                            <input class="form-check-input"  type="checkbox"
                                 {{ $item->is_active ? 'checked' : '' }}
-                                onchange="confirmToggleActive('{{ route('admin.gallery.update', $item->id) }}', this.checked)">
+                             onchange="confirmToggleActive('{{ route('admin.gallery.update', $item->id) }}', this.checked)">
                             <label class="form-check-label">Active</label>
                         </div>
                     </div>
@@ -152,7 +168,14 @@
     function confirmToggleActive(route, checked) {
         const form = document.getElementById('toggleActiveForm');
         form.action = route;
-        form.innerHTML += `<input type="hidden" name="is_active" value="${checked ? 1 : 0}">`;
+
+        // Remove previous hidden input
+        const oldInput = document.querySelector('#toggleActiveForm input[name="is_active"]');
+        if (oldInput) oldInput.remove();
+
+        // Add new hidden input
+        form.insertAdjacentHTML('beforeend',
+            `<input type="hidden" name="is_active" value="${checked ? 1 : 0}">`);
         $('#toggleActiveConfirmModal').modal('show');
     }
 

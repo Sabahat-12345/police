@@ -12,6 +12,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleryItems = Gallery::latest()->get();
+          $galleriesItems = Gallery::where('is_active', 1)->latest()->get();
         return view('admin.gallery', compact('galleryItems'));
     }
 
@@ -41,7 +42,7 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $gallery = Gallery::findOrFail($id);
-        $gallery->is_active = $request->has('is_active');
+        $gallery->is_active = $request->input('is_active', 0);
         $gallery->save();
 
         return back()->with('success', 'Status updated.');
@@ -51,7 +52,7 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::findOrFail($id);
 
-        $imagePath = public_path('admin/images/gallery/' . $gallery->image_path);
+        $imagePath = public_path( $gallery->image_path);
 
         if (File::exists($imagePath)) {
             File::delete($imagePath); // ✅ Delete actual file
@@ -61,4 +62,5 @@ class GalleryController extends Controller
 
         return back()->with('success', 'Gallery item deleted.');
     }
+
 }

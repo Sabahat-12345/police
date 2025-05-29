@@ -20,7 +20,9 @@ class HomeController extends Controller
 
 public function getGallery() {
     // GalleryController ka index method call karo
-    $galleries = Gallery::get();
+    $galleries = Gallery::where('is_active', 1)
+                        ->latest()         // optional: latest first
+                        ->get();
     return view('gallery', compact('galleries'));
 }
 }
