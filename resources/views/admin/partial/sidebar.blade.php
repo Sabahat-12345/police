@@ -89,7 +89,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Tables:</h6>
                 <a class="collapse-item" href="{{route('admin-apply.list')}}">Apply</a>
-                <a class="collapse-item" href="#complain">Complain</a>
+                <a class="collapse-item" href="{{route('admin-complain.list')}}">Complain</a>
                 <a class="collapse-item" href="#complain-against-police">Complain Against Police</a>
                 <a class="collapse-item" href="#application-status">Application Status</a>
                 <a class="collapse-item" href="#collaborate">Collaborate</a>

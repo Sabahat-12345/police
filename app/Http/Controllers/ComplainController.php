@@ -7,6 +7,20 @@ use Illuminate\Http\Request;
 
 class ComplainController extends Controller
 {
+      public function index()
+    {
+        // dd('asdsad;');
+        $models = Complain::get();
+        return view('admin.complain', compact('models'));
+    }
+       public function show($id)
+    {
+          $model = complain::findOrFail($id);
+    $models = collect([$model]);
+    return view('admin.complain', compact('models'));
+    }
+
+
     function complainPost(Request $request)
     {
         $complain =  $request->validate([
@@ -72,8 +86,15 @@ class ComplainController extends Controller
     }
     return redirect()->back()->with('error', 'Complain submitted successfully!');
         
-
-      
-       
+    
     }
+
+      public function edit($id)
+    {
+        // dd('asdsad;');
+        $model = Complain::find($id);
+        return view('admin.complain_edit', compact('model'));
+    }
+    
+   
 }

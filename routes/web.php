@@ -240,6 +240,9 @@ Route::get('/tables', function (){
 Route::get('/admin/apply/form', function (){
     return view('admin.apply'); 
 })->name('admin-apply');
+// Route::get('/admin/complain/form', function (){
+//     return view('admin.complain'); 
+// })->name('admin-complain');
 
 
 // Route::get('/admin/apply/list', [ApplyController::class, 'index'])->name('admin-apply.list');
@@ -268,6 +271,17 @@ Route::prefix('admin/apply')->group(function () {
     Route::post('/{id}/approve', [ApplyController::class, 'approve'])->name('approve');
     Route::post('/{id}/reject', [ApplyController::class, 'reject'])->name('reject');
     Route::delete('/{id}', [ApplyController::class, 'destroy'])->name('destroy');
+});
+
+Route::prefix('admin/complain')->group(function () {
+    Route::get('/list', [ComplainController::class, 'index'])->name('admin-complain.list'); // 👈 Add this
+
+    Route::get('/{id}', [ComplainController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [ComplainController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [ComplainController::class, 'update'])->name('update');
+    Route::post('/{id}/approve', [ComplainController::class, 'approve'])->name('approve');
+    Route::post('/{id}/reject', [ComplainController::class, 'reject'])->name('reject');
+    Route::delete('/{id}', [ComplainController::class, 'destroy'])->name('destroy');
 });
 
 
