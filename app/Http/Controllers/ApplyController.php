@@ -105,7 +105,7 @@ class ApplyController extends Controller
     public function approve($id)
     {
         $apply = Apply::findOrFail($id);
-        $apply->status = 'approved';
+        $apply->status = '1';
         $apply->save();
 
         return redirect()->back()->with('success', 'Application approved.');
@@ -115,7 +115,7 @@ class ApplyController extends Controller
     public function reject($id)
     {
         $apply = Apply::findOrFail($id);
-        $apply->status = 'rejected';
+        $apply->status = '2';
         $apply->save();
 
         return redirect()->back()->with('error', 'Application rejected.');

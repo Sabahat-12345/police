@@ -93,23 +93,25 @@
                                                     <i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i> Edit (ID: {{ $model->id }})
                                                 </a>
 
-                                                <form method="POST" action="{{ route('approve', $model->id) }}">
+                                                <form action="{{ route('apply.approve', $model->id) }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item text-success">
-                                                        <i class="fas fa-check fa-sm fa-fw mr-2"></i> Approve
-                                                    </button>
+                                                    <button
+                                                        onclick="return confirm('Are you sure you want to approve this Apply Form?')"
+                                                        class="dropdown-item text-success font-weight-bold" type="submit">✔
+                                                        Approve</button>
                                                 </form>
 
-                                                <form method="POST" action="{{ route('reject', $model->id) }}">
+                                                <form action="{{ route('apply.reject', $model->id) }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="dropdown-item text-warning">
-                                                        <i class="fas fa-times fa-sm fa-fw mr-2"></i> Reject
-                                                    </button>
+                                                    <button
+                                                        onclick="return confirm('Are you sure you want to reject this Apply Form?')"
+                                                        class="dropdown-item text-warning font-weight-bold" type="submit">✖
+                                                        Reject</button>
                                                 </form>
 
                                                 <div class="dropdown-divider"></div>
 
-                                                <form method="POST" action="{{ route('destroy', $model->id) }}">
+                                                <form method="POST" action="{{ route('apply.destroy', $model->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger"
@@ -178,7 +180,7 @@
              aria-labelledby="editModalLabel{{ $model->id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <form action="{{ route('update', $model->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('apply.update', $model->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="modal-header">

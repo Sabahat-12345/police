@@ -265,23 +265,23 @@ Route::prefix('/admin')->group(function () {
 Route::prefix('admin/apply')->group(function () {
     Route::get('/list', [ApplyController::class, 'index'])->name('admin-apply.list'); // 👈 Add this
 
-    Route::get('/{id}', [ApplyController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [ApplyController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [ApplyController::class, 'update'])->name('update');
-    Route::post('/{id}/approve', [ApplyController::class, 'approve'])->name('approve');
-    Route::post('/{id}/reject', [ApplyController::class, 'reject'])->name('reject');
-    Route::delete('/{id}', [ApplyController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}', [ApplyController::class, 'show'])->name('apply.show');
+    Route::get('/{id}/edit', [ApplyController::class, 'edit'])->name('apply.edit');
+    Route::put('/{id}', [ApplyController::class, 'update'])->name('apply.update');
+    Route::post('/{id}/approve', [ApplyController::class, 'approve'])->name('apply.approve');
+    Route::post('/{id}/reject', [ApplyController::class, 'reject'])->name('apply.reject');
+    Route::delete('/{id}', [ApplyController::class, 'destroy'])->name('apply.destroy');
 });
 
 Route::prefix('admin/complain')->group(function () {
     Route::get('/list', [ComplainController::class, 'index'])->name('admin-complain.list'); // 👈 Add this
 
-    Route::get('/{id}', [ComplainController::class, 'show'])->name('show');
-    Route::get('/{id}/edit', [ComplainController::class, 'edit'])->name('edit');
-    Route::put('/{id}', [ComplainController::class, 'update'])->name('update');
-    Route::post('/{id}/approve', [ComplainController::class, 'approve'])->name('approve');
-    Route::post('/{id}/reject', [ComplainController::class, 'reject'])->name('reject');
-    Route::delete('/{id}', [ComplainController::class, 'destroy'])->name('destroy');
+    Route::get('/show/{id}', [ComplainController::class, 'show'])->name('complain.show');
+    Route::get('/{id}/edit', [ComplainController::class, 'edit'])->name('complain.edit');
+    Route::put('/{id}', [ComplainController::class, 'update'])->name('complain.update');
+    Route::post('/{id}/approve', [ComplainController::class, 'approve'])->name('complain.approve');
+    Route::post('/{id}/reject', [ComplainController::class, 'reject'])->name('complain.reject');
+    Route::delete('/delete/{id}', [ComplainController::class, 'destroy'])->name('complain.destroy');
 });
 
 

@@ -1,4 +1,5 @@
 
+
    @extends('layouts.app',['title'=>'Islamabad Capital Police Complaint Form'])
    @section('main')
    <div class="bg-light">
@@ -21,6 +22,12 @@
         </div>  
           
       @endif
+ @if ($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>❌ Complain does not submitted.</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
       <form class="bg-white p-4 rounded shadow" action="{{ route('complain.post') }}" method="POST" enctype="multipart/form-data"> 
         @csrf 
@@ -78,8 +85,8 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label">WhatsApp No</label>
-                <input type="tel" class="form-control" name="whatsappNo" />
-                @error('whatsappNo')
+                <input type="tel" class="form-control" name="whatsAppNo" />
+                @error('whatsAppNo')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
               </div>

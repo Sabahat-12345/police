@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('natureOfComplaint')->nullable();    
             $table->string('frNo')->nullable(); 
             $table->string('complainantCountry')->nullable();    
-            $table->string('incidentDetails')->nullable();    
+            $table->string('incidentDetails')->nullable();
+            $table->tinyInteger('status')->default('0');    
             $table->string('attachFile')->nullable(); 
             $table->timestamps();
 

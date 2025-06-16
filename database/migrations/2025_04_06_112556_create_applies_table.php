@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('jobPosition')->nullable();
             $table->string('education')->nullable();
             $table->string('experience')->nullable();
-             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->tinyInteger('status')->default('0'); 
             $table->string('resume')->nullable();
         
 

@@ -4,6 +4,7 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Edit Complaint</h1>
@@ -73,8 +74,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">WhatsApp No</label>
-                                <input type="tel" class="form-control" name="whatsappNo" value="{{ old('whatsappNo', $model->whatsappNo) }}" />
-                                @error('whatsappNo')
+                                <input type="tel" class="form-control" name="whatsAppNo" value="{{ old('whatsAppNo', $model->whatsAppNo) }}" />
+                                @error('whatsAppNo')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -212,7 +213,7 @@
 
                 <!-- Form Actions -->
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('complain.index') }}" class="btn btn-secondary">Back to List</a>
+                    <a href="{{ route('admin-complain.list') }}" class="btn btn-secondary">Back to List</a>
                     <button type="submit" class="btn btn-primary">Update Complaint</button>
                 </div>
             </form>
