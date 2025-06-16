@@ -273,15 +273,17 @@ Route::prefix('admin/apply')->group(function () {
     Route::delete('/{id}', [ApplyController::class, 'destroy'])->name('apply.destroy');
 });
 
-Route::prefix('admin/complain')->group(function () {
-    Route::get('/list', [ComplainController::class, 'index'])->name('admin-complain.list'); // 👈 Add this
+Route::prefix('admin/')->group(function () {
+    Route::get('complain/list', [ComplainController::class, 'index'])->name('admin-complain.list'); // 👈 Add this
 
-    Route::get('/show/{id}', [ComplainController::class, 'show'])->name('complain.show');
-    Route::get('/{id}/edit', [ComplainController::class, 'edit'])->name('complain.edit');
-    Route::put('/{id}', [ComplainController::class, 'update'])->name('complain.update');
-    Route::post('/{id}/approve', [ComplainController::class, 'approve'])->name('complain.approve');
-    Route::post('/{id}/reject', [ComplainController::class, 'reject'])->name('complain.reject');
-    Route::delete('/delete/{id}', [ComplainController::class, 'destroy'])->name('complain.destroy');
+    Route::get('complain/approved/list', [ComplainController::class, 'approved'])->name('complain-approved.list');
+    Route::get('complain/rejected/list', [ComplainController::class, 'rejected'])->name('complain-rejected.list');
+    Route::get('complain/show/{id}', [ComplainController::class, 'show'])->name('complain.show');
+    Route::get('complain/{id}/edit', [ComplainController::class, 'edit'])->name('complain.edit');
+    Route::put('complain/{id}', [ComplainController::class, 'update'])->name('complain.update');
+    Route::post('complain/{id}/approve', [ComplainController::class, 'approve'])->name('complain.approve');
+    Route::post('complain/{id}/reject', [ComplainController::class, 'reject'])->name('complain.reject');
+    Route::delete('complain/delete/{id}', [ComplainController::class, 'destroy'])->name('complain.destroy');
 });
 
 

@@ -10,7 +10,7 @@ class ComplainController extends Controller
       public function index()
     {
         // dd('asdsad;');
-        $models = Complain::get();
+        $models = Complain::where('status', 0)->get();
         return view('admin.complain', compact('models'));
     }
     public function show($id)
@@ -18,6 +18,17 @@ class ComplainController extends Controller
     $model = Complain::findOrFail($id);
     return view('admin.complain_show', compact('model'));
 }
+
+    public function approved()
+    {
+        $models = Complain::where('status', 1)->get();
+        return view('admin.complain_approved', compact('models'));
+    }
+    public function rejected()
+    {
+        $models = Complain::where('status', 2)->get();
+        return view('admin.complain_rejected', compact('models'));
+    }
 
 
     function complainPost(Request $request)

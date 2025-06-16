@@ -42,6 +42,7 @@
                 <a class="collapse-item" href="{{ route('admin.slider') }}">Slider</a>
             </div>
         </div>
+     
     </li>
 
 
@@ -95,7 +96,24 @@
                 <a class="collapse-item" href="#collaborate">Collaborate</a>
             </div>
         </div>
+        
     </li>
+    <!-- Nav Item - Complaint Status -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComplaintStatus"
+        aria-expanded="true" aria-controls="collapseComplaintStatus">
+        <i class="fas fa-fw fa-check-circle"></i>
+        <span>Complaint Status</span>
+    </a>
+    <div id="collapseComplaintStatus" class="collapse" aria-labelledby="headingComplaintStatus" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Complaint Status:</h6>
+            <a class="collapse-item" href="{{route('complain-approved.list')}}">Approved Complaints</a>
+            <a class="collapse-item" href="{{route('complain-rejected.list')}}">Rejected Complaints</a>
+        </div>
+    </div>
+</li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
